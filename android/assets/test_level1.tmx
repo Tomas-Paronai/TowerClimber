@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="25" height="75" tilewidth="16" tileheight="16" nextobjectid="36">
+ <properties>
+  <property name="Name" value="Test 1"/>
+ </properties>
+ <tileset firstgid="1" name="Metroidvania Tileset" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="196" columns="14">
+  <image source="Metroidvania Tileset.png" width="256" height="256"/>
+ </tileset>
+ <layer name="background" width="25" height="75">
+  <data encoding="base64" compression="zlib">
+   eJztzzERADAMA7HgTQm07BsSnqLB96vVVXVmHeydvXCT/zk4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4OPY5PnVePqY=
+  </data>
+ </layer>
+ <layer name="ground_graphics" width="25" height="75">
+  <data encoding="base64" compression="zlib">
+   eJztmMsOgjAQRRF1Lera11rQta///y1PE7upaChxDBPuSU6YTTOBuROSFoUQw2SCJU5xhnODHguscIkrXBv0EO/0nW3Oub6zVSbEEEmznz7bdiGe6bpfafbTZ9suxDPaE9/of/t79E39oxn6RzMUXRhLTsbyniIP5cIvmp34F7q/E175dI9WZtbf7uFCBmP+KoM6ZHqDO9zj1qAOPY7Y4Alrg/qAF7zhHa8G9fnVw3IeD3wC5ncXBg==
+  </data>
+ </layer>
+ <objectgroup name="ground">
+  <object id="1" x="0" y="1104" width="400" height="16"/>
+  <object id="5" x="0" y="992" width="80" height="32"/>
+  <object id="6" x="224" y="992" width="80" height="32"/>
+  <object id="7" x="320" y="880" width="80" height="32"/>
+  <object id="9" x="144" y="816" width="80" height="32"/>
+  <object id="10" x="0" y="736" width="80" height="32"/>
+  <object id="11" x="64" y="608" width="80" height="32"/>
+  <object id="12" x="272" y="688" width="80" height="32"/>
+  <object id="13" x="256" y="528" width="80" height="32"/>
+  <object id="14" x="48" y="464" width="80" height="32"/>
+  <object id="15" x="288" y="400" width="80" height="32"/>
+  <object id="18" x="256" y="304" width="144" height="32"/>
+  <object id="19" x="64" y="320" width="48" height="32"/>
+  <object id="20" x="0" y="192" width="80" height="32"/>
+  <object id="22" x="176" y="176" width="80" height="32"/>
+  <object id="23" x="272" y="96" width="80" height="32"/>
+ </objectgroup>
+ <objectgroup name="player">
+  <object id="26" x="114" y="1062" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="diamonds">
+  <object id="32" x="194" y="132.5" width="32" height="32"/>
+  <object id="33" x="65" y="423" width="32" height="32"/>
+  <object id="34" x="296" y="643" width="32" height="32"/>
+  <object id="35" x="33" y="948" width="32" height="32"/>
+ </objectgroup>
+</map>
