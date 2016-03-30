@@ -14,6 +14,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.screens.PlayScreen;
 import parohyapp.mario.sprites.Climber;
+import parohyapp.mario.sprites.Creep;
+import parohyapp.mario.sprites.State;
 import parohyapp.mario.tools.Update;
 
 /**
@@ -30,25 +32,16 @@ public abstract class Entity extends Sprite implements Update{
     public static short CLIMBER_BIT = 2;
     public static short DIAMOND_BIT = 4;
     public static short DISPOSE_BIT = 8;
+    public static short CREEP_BIT = 16;
+    public static short MARK_BIT = 32;
+
+
 
     public Entity(World world, Rectangle bounds) {
         this.bounds = bounds;
         this.world = world;
 
         initRectangle();
-    }
-
-    private void initCircle() {
-        BodyDef bDef = new BodyDef();
-        bDef.position.set(bounds.getX() / TowerClimber.PPM,bounds.getY() / TowerClimber.PPM);
-        bDef.type = BodyDef.BodyType.DynamicBody;
-        b2Body = world.createBody(bDef);
-
-        FixtureDef fixDef = new FixtureDef();
-        CircleShape shape = new CircleShape();
-        shape.setRadius(12 / TowerClimber.PPM);
-        fixDef.shape = shape;
-        b2Body.createFixture(fixDef);
     }
 
     private void initRectangle(){
@@ -59,11 +52,16 @@ public abstract class Entity extends Sprite implements Update{
         if(this instanceof Climber){
             bDef.type = BodyDef.BodyType.DynamicBody;
             fixDef.filter.categoryBits = CLIMBER_BIT;
-            fixDef.filter.maskBits = (short) (DEFAULT_BIT | DIAMOND_BIT);
+            fixDef.filter.maskBits = (short) (DEFAULT_BIT | DIAMOND_BIT | CREEP_BIT);
+        }
+        else if(this instanceof Creep){
+            bDef.type = BodyDef.BodyType.DynamicBody;
+            fixDef.filter.categoryBits = CREEP_BIT;
+            fixDef.filter.maskBits = (short) (DEFAULT_BIT | CLIMBER_BIT | MARK_BIT);
         }
         else{
-            fixDef.filter.categoryBits = DEFAULT_BIT;
             bDef.type = BodyDef.BodyType.StaticBody;
+            fixDef.filter.categoryBits = DEFAULT_BIT;
         }
         bDef.position.set((bounds.getX() + bounds.getWidth() / 2) / TowerClimber.PPM, (bounds.getY() + bounds.getHeight() / 2) / TowerClimber.PPM);
         b2Body = world.createBody(bDef);

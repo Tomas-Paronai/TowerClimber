@@ -8,7 +8,9 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
 import parohyapp.mario.sprites.Climber;
+import parohyapp.mario.sprites.Creep;
 import parohyapp.mario.sprites.Diamond;
+import parohyapp.mario.sprites.Ground;
 import parohyapp.mario.sprites.parent.InteractiveSpriteEntity;
 
 /**
@@ -28,6 +30,15 @@ public class WorldContactListener implements ContactListener{
 
             if(object.getUserData() instanceof InteractiveSpriteEntity){
                 ((InteractiveSpriteEntity)object.getUserData()).onColide();
+            }
+        }
+
+        else if(A.getUserData() instanceof Creep || B.getUserData() instanceof Creep){
+            Fixture creep = A.getUserData() instanceof Creep ? A : B;
+            Fixture ground = A == creep ? B : A;
+
+            if(ground.getUserData() instanceof String && ((String)ground.getUserData()).equals("mark")){
+                ((Creep)creep.getUserData()).onColide();
             }
         }
     }
