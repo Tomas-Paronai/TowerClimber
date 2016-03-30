@@ -20,6 +20,7 @@ public class Climber extends InteractiveSpriteEntity implements parohyapp.mario.
     private static final String TAG = "Climber";
 
     private Animation runningAnim;
+    private Animation jumpingAnim;
     private float stateTime;
     private State currentState;
     private State previousState;
@@ -33,16 +34,24 @@ public class Climber extends InteractiveSpriteEntity implements parohyapp.mario.
 
     @Override
     public void initTexture() {
-        setRegion(screen.getGameMaster().getTextureByRegion("idle"));
-        setBounds(0, 0, 32 / TowerClimber.PPM, 32 / TowerClimber.PPM);
+        setRegion(screen.getGameMaster().getTextureByRegion64("tomidle"));
+        setBounds(0, 0, 64 / TowerClimber.PPM, 64 / TowerClimber.PPM);
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
-        TextureRegion in = screen.getGameMaster().getTextureByRegion("running");
-        for(int i = 0; i < 6; i++){
-            frames.add(new TextureRegion(in.getTexture(),i*32,0,32,32));
+        TextureRegion in = screen.getGameMaster().getTextureByRegion64("tomrun");
+        for(int i = 0; i < 8; i++){
+            frames.add(new TextureRegion(in.getTexture(),i*64,0,64,64));
         }
         runningAnim = new Animation(0.15f,frames);
         frames.clear();
+
+        in = screen.getGameMaster().getTextureByRegion64("tomjump");
+        for(int i = 0; i < 5; i++){
+            frames.add(new TextureRegion(in.getTexture(),i*64,0,64,64));
+        }
+        jumpingAnim = new Animation(0.08f,frames);
+        frames.clear();
+
         currentState = previousState = State.IDLE;
         facingRight = true;
     }
@@ -85,11 +94,12 @@ public class Climber extends InteractiveSpriteEntity implements parohyapp.mario.
 
         if(currentState == State.IDLE || currentState == State.FALLING){
            // Gdx.app.log(TAG,"I am idle.");
-            tmpTexture = screen.getGameMaster().getTextureByRegion("idle");
+            tmpTexture = screen.getGameMaster().getTextureByRegion64("tomidle");
         }
         else if(currentState == State.JUMPING){
             //Gdx.app.log(TAG, "I am jumping. ");
-            tmpTexture = screen.getGameMaster().getTextureByRegion("jump");
+            //tmpTexture = screen.getGameMaster().getTextureByRegion32("jump");
+            tmpTexture = jumpingAnim.getKeyFrame(stateTime,false);
         }
         else{
             //Gdx.app.log(TAG, "I am running. ");
@@ -109,7 +119,7 @@ public class Climber extends InteractiveSpriteEntity implements parohyapp.mario.
         previousState = currentState;
 
         if(tmpTexture == null){
-            tmpTexture = screen.getGameMaster().getTextureByRegion("idle");
+            tmpTexture = screen.getGameMaster().getTextureByRegion64("tomidle");
         }
 
         return tmpTexture;

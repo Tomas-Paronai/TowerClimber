@@ -42,7 +42,7 @@
   <object id="30" x="32" y="720" width="48" height="16"/>
  </objectgroup>
  <objectgroup name="player">
-  <object id="24" x="165.333" y="993.333" width="32" height="32"/>
+  <object id="24" x="149.333" y="972.333" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="diamonds">
   <object id="25" x="78.6667" y="772" width="32" height="32"/>

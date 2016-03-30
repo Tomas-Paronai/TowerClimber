@@ -2,7 +2,6 @@ package parohyapp.mario.sprites;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -37,7 +36,7 @@ public class Diamond extends InteractiveSpriteEntity {
     @Override
     public void initTexture() {
         Gdx.app.log(TAG,"Before "+getTexture());
-        setRegion(screen.getGameMaster().getTextureByRegion("diamond"));
+        setRegion(screen.getGameMaster().getTextureByRegion32("diamond"));
         Gdx.app.log(TAG, "After " + getTexture());
         setBounds(0, 0, 32 / TowerClimber.PPM, 32 / TowerClimber.PPM);
     }

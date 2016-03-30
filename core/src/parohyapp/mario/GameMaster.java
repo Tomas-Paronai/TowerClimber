@@ -27,7 +27,8 @@ public class GameMaster implements Update,Disposable{
 
     private TmxMapLoader mapLoader;
     private PlayScreen screen;
-    private TextureAtlas textureAtlas;
+    private TextureAtlas textureAtlas32;
+    private TextureAtlas textureAtlas64;
     private AssetManager assetManager;
 
     private Music music;
@@ -46,7 +47,8 @@ public class GameMaster implements Update,Disposable{
         currentLevel = 1;
 
         mapLoader = new TmxMapLoader();
-        textureAtlas = new TextureAtlas("climber.pack");
+        textureAtlas32 = new TextureAtlas("climber.pack");
+        textureAtlas64 = new TextureAtlas("climber64.pack");
         loadAssets();
 
     }
@@ -62,7 +64,7 @@ public class GameMaster implements Update,Disposable{
 
         music = assetManager.get("audio/music.wav",Music.class);
         music.setLooping(true);
-        music.play();
+        //music.play();
     }
 
     @Override
@@ -128,8 +130,12 @@ public class GameMaster implements Update,Disposable{
         this.numberOfDiamonds += numberOfDiamonds;
     }
 
-    public TextureRegion getTextureByRegion(String region){
-        return textureAtlas.findRegion(region);
+    public TextureRegion getTextureByRegion32(String region){
+        return textureAtlas32.findRegion(region);
+    }
+
+    public TextureRegion getTextureByRegion64(String region){
+        return textureAtlas64.findRegion(region);
     }
 
     public AssetManager getAssetManager() {
@@ -140,6 +146,6 @@ public class GameMaster implements Update,Disposable{
     @Override
     public void dispose() {
         assetManager.dispose();
-        textureAtlas.dispose();
+        textureAtlas32.dispose();
     }
 }

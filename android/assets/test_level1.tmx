@@ -35,7 +35,7 @@
   <object id="23" x="272" y="96" width="80" height="32"/>
  </objectgroup>
  <objectgroup name="player">
-  <object id="26" x="114" y="1062" width="32" height="32"/>
+  <object id="26" x="111" y="1033" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="diamonds">
   <object id="32" x="194" y="132.5" width="32" height="32"/>
