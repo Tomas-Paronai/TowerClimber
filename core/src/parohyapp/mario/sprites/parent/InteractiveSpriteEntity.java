@@ -20,6 +20,7 @@ public abstract class InteractiveSpriteEntity extends Entity{
     protected State currentState;
     protected State previousState;
     protected boolean facingRight;
+    private boolean jumping;
 
     public InteractiveSpriteEntity(World world, Rectangle bounds, PlayScreen screen){
         super(world,bounds);

@@ -80,7 +80,7 @@ public class GameMaster implements Update,Disposable{
 
         if(time == 0){
             //TODO no more time
-            Gdx.app.log(TAG,"Out of time");
+            Gdx.app.log(TAG,"Out of time. Restart!");
         }
 
 

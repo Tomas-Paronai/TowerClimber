@@ -102,8 +102,10 @@ public class PlayScreen implements Screen {
         world.step(1 / 60f, 6, 2);
         gameCam.position.y = climber.getB2Body().getPosition().y + 3.5f;
 
-        updateEntities(delta);
+
         gameMaster.update(delta);
+        updateEntities(delta);
+
         hud.setWorldTimer(gameMaster.getTime());
         hud.setScore(gameMaster.getScore());
 

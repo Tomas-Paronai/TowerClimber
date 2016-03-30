@@ -29,19 +29,6 @@ public abstract class Creep extends InteractiveSpriteEntity {
 
 
     public void onColide() {
-        /*float gx = ground.getX();
-        float gy = ground.getY();
-        float gw = ground.getWidth();
-        float gh = ground.getHeight();
-
-        float cx = creep.getX();
-        float cy = creep.getY();
-        float cw = creep.getWidth();
-        float ch = creep.getHeight();
-        if(gx >= cx || gx+gw <= cx+cw){
-            Gdx.app.log(TAG,"switching");
-            switchDirection();
-        }*/
         switchDirection();
     }
 
@@ -61,7 +48,7 @@ public abstract class Creep extends InteractiveSpriteEntity {
         //TODO creep animation
         super.getFrame(delta);
         if(runningAnim != null){
-            TextureRegion tmpTexture = runningAnim.getKeyFrame(stateTime);
+            TextureRegion tmpTexture = runningAnim.getKeyFrame(stateTime,true);
             if((b2Body.getLinearVelocity().x < 0 || !facingRight) && !tmpTexture.isFlipX()){
                 tmpTexture.flip(true,false);
                 facingRight = false;
@@ -72,12 +59,6 @@ public abstract class Creep extends InteractiveSpriteEntity {
             }
             flippingFrame(tmpTexture);
             setRegion(tmpTexture);
-            /*if(currentState == null){
-                Gdx.app.log(TAG, "null");
-            }
-            else{
-                Gdx.app.log(TAG, currentState.toString());
-            }*/
         }
 
 
