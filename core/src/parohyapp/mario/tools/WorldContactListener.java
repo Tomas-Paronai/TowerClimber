@@ -28,7 +28,7 @@ public class WorldContactListener implements ContactListener{
             Fixture player = A.getUserData() instanceof Climber ? A : B;
             Fixture object = A == player ? B : A;
 
-            if(object.getUserData() instanceof InteractiveSpriteEntity){
+            if(object.getUserData() instanceof InteractiveSpriteEntity && !(object.getUserData() instanceof Creep)){
                 ((InteractiveSpriteEntity)object.getUserData()).onColide();
             }
         }

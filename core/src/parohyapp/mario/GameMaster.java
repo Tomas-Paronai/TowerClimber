@@ -33,7 +33,7 @@ public class GameMaster implements Update,Disposable{
 
     private Music music;
 
-    private String[] levels = {"test_level1.tmx","test_level2.tmx"};
+    private String[] levels = {"level1.tmx","level2.tmx","test_level1.tmx","test_level2.tmx"};
     private int numberOfLevels;
     private int currentLevel;
 
@@ -44,7 +44,7 @@ public class GameMaster implements Update,Disposable{
         lives = 3;
 
         numberOfLevels = levels.length;
-        currentLevel = 1;
+        currentLevel = 2;
 
         mapLoader = new TmxMapLoader();
         textureAtlas32 = new TextureAtlas("climber.pack");

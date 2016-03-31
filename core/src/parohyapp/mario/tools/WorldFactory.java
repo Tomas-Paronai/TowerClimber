@@ -26,11 +26,11 @@ import parohyapp.mario.sprites.parent.Entity;
 public class WorldFactory {
     private static final String TAG = "WorldFactory";
 
-    public final static int L_GROUND = 2;
-    public final static int L_PLAYER = 3;
-    public final static int L_DIAMONDS = 4;
-    public final static int L_CREEP = 5;
-    public final static int L_MARK = 6;
+    public final static String L_GROUND = "ground";
+    public final static String L_PLAYER = "player";
+    public final static String L_DIAMONDS = "diamonds";
+    public final static String L_CREEP = "creep";
+    public final static String L_MARK = "mark";
 
 
 
