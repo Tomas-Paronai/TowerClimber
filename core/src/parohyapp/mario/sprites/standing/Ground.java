@@ -1,4 +1,4 @@
-package parohyapp.mario.sprites;
+package parohyapp.mario.sprites.standing;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;

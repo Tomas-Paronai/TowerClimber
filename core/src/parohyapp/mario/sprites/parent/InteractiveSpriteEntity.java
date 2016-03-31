@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 
 import parohyapp.mario.screens.PlayScreen;
-import parohyapp.mario.sprites.State;
+import parohyapp.mario.sprites.animated.State;
 
 /**
  * Created by tomas on 3/24/2016.

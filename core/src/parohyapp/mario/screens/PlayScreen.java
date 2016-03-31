@@ -4,9 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -19,7 +17,7 @@ import java.util.ArrayList;
 import parohyapp.mario.GameMaster;
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.scenes.Hud;
-import parohyapp.mario.sprites.Climber;
+import parohyapp.mario.sprites.animated.Climber;
 import parohyapp.mario.sprites.parent.InteractiveSpriteEntity;
 import parohyapp.mario.tools.WorldContactListener;
 import parohyapp.mario.tools.WorldFactory;
@@ -69,12 +67,14 @@ public class PlayScreen implements Screen {
         //tiled map related
         map = gameMaster.getLevelMap();
         mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / TowerClimber.PPM);
+
         if(map.getProperties().containsKey("Name")){
             hud.setName((String) map.getProperties().get("Name"));
         }
         else{
             hud.setName("unknown");
         }
+
 
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
 

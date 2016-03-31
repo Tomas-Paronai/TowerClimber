@@ -1,4 +1,4 @@
-package parohyapp.mario.sprites;
+package parohyapp.mario.sprites.animated;
 
 /**
  * Created by tomas on 3/25/2016.

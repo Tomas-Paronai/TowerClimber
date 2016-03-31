@@ -1,4 +1,4 @@
-package parohyapp.mario.sprites;
+package parohyapp.mario.sprites.animated;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -11,7 +11,7 @@ import parohyapp.mario.screens.PlayScreen;
 /**
  * Created by tomas on 3/30/2016.
  */
-public class TestCreep extends Creep {
+public class TestCreep extends parohyapp.mario.sprites.Creep {
 
     public TestCreep(World world, Rectangle bounds, PlayScreen screen) {
         super(world, bounds, screen);

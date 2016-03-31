@@ -44,7 +44,7 @@ public class GameMaster implements Update,Disposable{
         lives = 3;
 
         numberOfLevels = levels.length;
-        currentLevel = 2;
+        currentLevel = 1;
 
         mapLoader = new TmxMapLoader();
         textureAtlas32 = new TextureAtlas("climber.pack");

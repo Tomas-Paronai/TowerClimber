@@ -1,4 +1,4 @@
-package parohyapp.mario.sprites;
+package parohyapp.mario.sprites.standing;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;

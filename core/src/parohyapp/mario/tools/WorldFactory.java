@@ -1,6 +1,5 @@
 package parohyapp.mario.tools;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -14,10 +13,10 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.screens.PlayScreen;
-import parohyapp.mario.sprites.Climber;
-import parohyapp.mario.sprites.Diamond;
-import parohyapp.mario.sprites.Ground;
-import parohyapp.mario.sprites.TestCreep;
+import parohyapp.mario.sprites.animated.Climber;
+import parohyapp.mario.sprites.standing.Diamond;
+import parohyapp.mario.sprites.standing.Ground;
+import parohyapp.mario.sprites.animated.TestCreep;
 import parohyapp.mario.sprites.parent.Entity;
 
 /**

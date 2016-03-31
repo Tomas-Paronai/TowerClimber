@@ -7,10 +7,8 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
-import parohyapp.mario.sprites.Climber;
-import parohyapp.mario.sprites.Creep;
-import parohyapp.mario.sprites.Diamond;
-import parohyapp.mario.sprites.Ground;
+import parohyapp.mario.sprites.animated.Climber;
+import parohyapp.mario.sprites.animated.Creep;
 import parohyapp.mario.sprites.parent.InteractiveSpriteEntity;
 
 /**

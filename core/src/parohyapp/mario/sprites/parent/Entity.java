@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -12,10 +11,8 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import parohyapp.mario.TowerClimber;
-import parohyapp.mario.screens.PlayScreen;
-import parohyapp.mario.sprites.Climber;
-import parohyapp.mario.sprites.Creep;
-import parohyapp.mario.sprites.State;
+import parohyapp.mario.sprites.animated.Climber;
+import parohyapp.mario.sprites.animated.Creep;
 import parohyapp.mario.tools.Update;
 
 /**
