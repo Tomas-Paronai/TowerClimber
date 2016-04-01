@@ -33,7 +33,7 @@ public class GameMaster implements Update,Disposable{
 
     private Music music;
 
-    private String[] levels = {"test_level1.tmx","test_level2.tmx"};
+    private String[] levels = {"level1.tmx","level2.tmx","test_level1.tmx","test_level2.tmx"};
     private int numberOfLevels;
     private int currentLevel;
 
@@ -80,7 +80,7 @@ public class GameMaster implements Update,Disposable{
 
         if(time == 0){
             //TODO no more time
-            Gdx.app.log(TAG,"Out of time");
+            Gdx.app.log(TAG,"Out of time. Restart!");
         }
 
 

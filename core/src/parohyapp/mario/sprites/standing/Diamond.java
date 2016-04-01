@@ -1,4 +1,4 @@
-package parohyapp.mario.sprites;
+package parohyapp.mario.sprites.standing;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -25,19 +25,24 @@ public class Diamond extends InteractiveSpriteEntity {
 
     @Override
     public void onColide() {
-        Gdx.app.log(TAG, "Colided with " + TAG);
-        setCategoryFilter(Entity.DISPOSE_BIT);
-        setVissible(false);
-        screen.getGameMaster().setScore(1);
-        screen.getGameMaster().setNumberOfDiamonds(-1);
-        screen.getGameMaster().getAssetManager().get("audio/score.mp3", Sound.class).play();
+        if(isVissible()){
+            Gdx.app.log(TAG, "Colided with " + TAG);
+            setCategoryFilter(Entity.DISPOSE_BIT);
+            setVissible(false);
+            screen.getGameMaster().setScore(1);
+            screen.getGameMaster().setNumberOfDiamonds(-1);
+            screen.getGameMaster().getAssetManager().get("audio/score.mp3", Sound.class).play();
+        }
     }
 
     @Override
     public void initTexture() {
-        Gdx.app.log(TAG,"Before "+getTexture());
         setRegion(screen.getGameMaster().getTextureByRegion32("diamond"));
-        Gdx.app.log(TAG, "After " + getTexture());
         setBounds(0, 0, 32 / TowerClimber.PPM, 32 / TowerClimber.PPM);
+    }
+
+    @Override
+    public void getFrame(float delta) {
+
     }
 }

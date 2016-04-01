@@ -1,4 +1,4 @@
-package parohyapp.mario.sprites;
+package parohyapp.mario.sprites.animated;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -20,11 +20,7 @@ public class Climber extends InteractiveSpriteEntity implements parohyapp.mario.
     private static final String TAG = "Climber";
 
     private Animation runningAnim;
-    private Animation jumpingAnim;
-    private float stateTime;
-    private State currentState;
-    private State previousState;
-    private boolean facingRight;
+
 
     public Climber(World world, Rectangle bounds, PlayScreen screen) {
         super(world, bounds, screen);
@@ -34,22 +30,15 @@ public class Climber extends InteractiveSpriteEntity implements parohyapp.mario.
 
     @Override
     public void initTexture() {
-        setRegion(screen.getGameMaster().getTextureByRegion64("tomidle"));
-        setBounds(0, 0, 64 / TowerClimber.PPM, 64 / TowerClimber.PPM);
+        setRegion(screen.getGameMaster().getTextureByRegion32("idle"));
+        setBounds(0, 0, 32 / TowerClimber.PPM, 32 / TowerClimber.PPM);
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
-        TextureRegion in = screen.getGameMaster().getTextureByRegion64("tomrun");
-        for(int i = 0; i < 8; i++){
-            frames.add(new TextureRegion(in.getTexture(),i*64,0,64,64));
+        TextureRegion in = screen.getGameMaster().getTextureByRegion32("running");
+        for(int i = 0; i < 6; i++){
+            frames.add(new TextureRegion(in.getTexture(),i*32,0,32,32));
         }
         runningAnim = new Animation(0.15f,frames);
-        frames.clear();
-
-        in = screen.getGameMaster().getTextureByRegion64("tomjump");
-        for(int i = 0; i < 5; i++){
-            frames.add(new TextureRegion(in.getTexture(),i*64,0,64,64));
-        }
-        jumpingAnim = new Animation(0.08f,frames);
         frames.clear();
 
         currentState = previousState = State.IDLE;
@@ -59,13 +48,8 @@ public class Climber extends InteractiveSpriteEntity implements parohyapp.mario.
     @Override
     public void update(float delta) {
         handleInput(delta);
-        updateTexture(delta);
+        getFrame(delta);
         super.update(delta);
-    }
-
-    private void updateTexture(float delta){
-        TextureRegion tx = getFrame(delta);
-        setRegion(tx);
     }
 
     @Override
@@ -88,56 +72,35 @@ public class Climber extends InteractiveSpriteEntity implements parohyapp.mario.
         }
     }
 
-    public TextureRegion getFrame(float delta){
-        currentState = getState();
+    @Override
+    public void getFrame(float delta){
+        super.getFrame(delta);
+        //currentState = getState();
         TextureRegion tmpTexture;
 
         if(currentState == State.IDLE || currentState == State.FALLING){
-           // Gdx.app.log(TAG,"I am idle.");
-            tmpTexture = screen.getGameMaster().getTextureByRegion64("tomidle");
+            //Gdx.app.log(TAG,"I am idle.");
+            tmpTexture = screen.getGameMaster().getTextureByRegion32("idle");
         }
         else if(currentState == State.JUMPING){
             //Gdx.app.log(TAG, "I am jumping. ");
-            //tmpTexture = screen.getGameMaster().getTextureByRegion32("jump");
-            tmpTexture = jumpingAnim.getKeyFrame(stateTime,false);
+            tmpTexture = screen.getGameMaster().getTextureByRegion32("jump");
         }
         else{
             //Gdx.app.log(TAG, "I am running. ");
             tmpTexture = runningAnim.getKeyFrame(stateTime,true);
         }
 
-        if((b2Body.getLinearVelocity().x < 0 || !facingRight) && !tmpTexture.isFlipX()){
-            tmpTexture.flip(true,false);
-            facingRight = false;
-        }
-        else if((b2Body.getLinearVelocity().x > 0 || facingRight) && tmpTexture.isFlipX()){
-            tmpTexture.flip(true,false);
-            facingRight = true;
-        }
-
-        stateTime = currentState == previousState ? stateTime += delta : 0;
-        previousState = currentState;
+        //stateTime = currentState == previousState ? stateTime += delta : 0;
+        //previousState = currentState;
 
         if(tmpTexture == null){
-            tmpTexture = screen.getGameMaster().getTextureByRegion64("tomidle");
+            tmpTexture = screen.getGameMaster().getTextureByRegion32("idle");
         }
 
-        return tmpTexture;
-    }
+        flippingFrame(tmpTexture);
 
-    public State getState(){
-        if(b2Body.getLinearVelocity().y > 0){
-            return State.JUMPING;
-        }
-        else if(b2Body.getLinearVelocity().y < 0){
-            return  State.FALLING;
-        }
-        else if(b2Body.getLinearVelocity().x != 0){
-            return State.RUNNING;
-        }
-        else{
-            return State.IDLE;
-        }
+        setRegion(tmpTexture);
     }
 
     @Override

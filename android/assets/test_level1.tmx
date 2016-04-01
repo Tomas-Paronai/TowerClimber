@@ -1,46 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="25" height="75" tilewidth="16" tileheight="16" nextobjectid="36">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="25" height="90" tilewidth="16" tileheight="16" nextobjectid="46">
  <properties>
   <property name="Name" value="Test 1"/>
  </properties>
  <tileset firstgid="1" name="Metroidvania Tileset" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="196" columns="14">
   <image source="Metroidvania Tileset.png" width="256" height="256"/>
  </tileset>
- <layer name="background" width="25" height="75">
+ <layer name="background" width="25" height="90">
   <data encoding="base64" compression="zlib">
-   eJztzzERADAMA7HgTQm07BsSnqLB96vVVXVmHeydvXCT/zk4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4OPY5PnVePqY=
+   eJzt0LERACAIA0DmxQV0e1nBgsLji1waijwZEauSjb0rp7k793NwcHD85ni9nfwrDg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg6OOY4L46HkMQ==
   </data>
  </layer>
- <layer name="ground_graphics" width="25" height="75">
+ <layer name="ground_graphics" width="25" height="90">
   <data encoding="base64" compression="zlib">
-   eJztmMsOgjAQRRF1Lera11rQta///y1PE7upaChxDBPuSU6YTTOBuROSFoUQw2SCJU5xhnODHguscIkrXBv0EO/0nW3Oub6zVSbEEEmznz7bdiGe6bpfafbTZ9suxDPaE9/of/t79E39oxn6RzMUXRhLTsbyniIP5cIvmp34F7q/E175dI9WZtbf7uFCBmP+KoM6ZHqDO9zj1qAOPY7Y4Alrg/qAF7zhHa8G9fnVw3IeD3wC5ncXBg==
+   eJztmMsOgjAQRRF1Lera11rQta///y1vE7upaChxiBPOSU6YTTOBuROSFgUAAADAMExkKadyJucGPRaykku5kmuDHvBO39nmnOs7WzIB/0ia/fTZtgvxTNf9SrOfPtt2IZ5hT3zD//b38E39wwz9wwyhC2PJyVjeE/IgF35hdjAU3N+BVz7do5WZ9bd7uJDBmL/KoA6Z3sid3MutQR16HGUjT7I2qA/yIm/yLq8G9fnVw3IeD/kE7FMXBg==
   </data>
  </layer>
  <objectgroup name="ground">
-  <object id="1" x="0" y="1104" width="400" height="16"/>
-  <object id="5" x="0" y="992" width="80" height="32"/>
-  <object id="6" x="224" y="992" width="80" height="32"/>
-  <object id="7" x="320" y="880" width="80" height="32"/>
-  <object id="9" x="144" y="816" width="80" height="32"/>
-  <object id="10" x="0" y="736" width="80" height="32"/>
-  <object id="11" x="64" y="608" width="80" height="32"/>
-  <object id="12" x="272" y="688" width="80" height="32"/>
-  <object id="13" x="256" y="528" width="80" height="32"/>
-  <object id="14" x="48" y="464" width="80" height="32"/>
-  <object id="15" x="288" y="400" width="80" height="32"/>
-  <object id="18" x="256" y="304" width="144" height="32"/>
-  <object id="19" x="64" y="320" width="48" height="32"/>
-  <object id="20" x="0" y="192" width="80" height="32"/>
-  <object id="22" x="176" y="176" width="80" height="32"/>
-  <object id="23" x="272" y="96" width="80" height="32"/>
+  <object id="1" x="0" y="1344" width="400" height="16"/>
+  <object id="5" x="0" y="1232" width="80" height="32"/>
+  <object id="6" x="224" y="1232" width="80" height="32"/>
+  <object id="7" x="320" y="1120" width="80" height="32"/>
+  <object id="9" x="144" y="1056" width="80" height="32"/>
+  <object id="10" x="0" y="976" width="80" height="32"/>
+  <object id="11" x="64" y="848" width="80" height="32"/>
+  <object id="12" x="272" y="928" width="80" height="32"/>
+  <object id="13" x="256" y="768" width="80" height="32"/>
+  <object id="14" x="48" y="704" width="80" height="32"/>
+  <object id="15" x="288" y="640" width="80" height="32"/>
+  <object id="18" x="256" y="544" width="144" height="32"/>
+  <object id="19" x="64" y="560" width="48" height="32"/>
+  <object id="20" x="0" y="432" width="80" height="32"/>
+  <object id="22" x="176" y="416" width="80" height="32"/>
+  <object id="23" x="272" y="336" width="80" height="32"/>
+  <object id="37" x="1" y="19" width="16" height="1325"/>
+  <object id="39" x="384" y="21" width="16" height="1320"/>
+  <object id="45" x="10" y="2" width="384" height="16"/>
  </objectgroup>
  <objectgroup name="player">
-  <object id="26" x="111" y="1033" width="64" height="64"/>
+  <object id="26" x="110" y="1302" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="diamonds">
-  <object id="32" x="194" y="132.5" width="32" height="32"/>
-  <object id="33" x="65" y="423" width="32" height="32"/>
-  <object id="34" x="296" y="643" width="32" height="32"/>
-  <object id="35" x="33" y="948" width="32" height="32"/>
+  <object id="32" x="194" y="372.5" width="32" height="32"/>
+  <object id="33" x="65" y="663" width="32" height="32"/>
+  <object id="34" x="296" y="883" width="32" height="32"/>
+  <object id="35" x="33" y="1188" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="creep">
+  <object id="40" x="179" y="1019" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="mark">
+  <object id="41" x="130" y="1040" width="16" height="16"/>
+  <object id="42" x="224" y="1040" width="16" height="16"/>
  </objectgroup>
 </map>
