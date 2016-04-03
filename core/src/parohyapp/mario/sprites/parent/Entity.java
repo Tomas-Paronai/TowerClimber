@@ -10,9 +10,11 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import box2dLight.Light;
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.sprites.animated.Climber;
 import parohyapp.mario.sprites.animated.Creep;
+import parohyapp.mario.sprites.standing.gems.Gemstone;
 import parohyapp.mario.tools.Update;
 
 /**
@@ -27,11 +29,12 @@ public abstract class Entity extends Sprite implements Update{
 
     public static short DEFAULT_BIT = 1;
     public static short CLIMBER_BIT = 2;
-    public static short DIAMOND_BIT = 4;
+    public static short GEMSTONE_BIT = 4;
     public static short DISPOSE_BIT = 8;
     public static short CREEP_BIT = 16;
     public static short MARK_BIT = 32;
-
+    public static short PLATFORM_BIT = 64;
+    public static short LSOURCE_BIT = 128;
 
 
     public Entity(World world, Rectangle bounds) {
@@ -49,7 +52,7 @@ public abstract class Entity extends Sprite implements Update{
         if(this instanceof Climber){
             bDef.type = BodyDef.BodyType.DynamicBody;
             fixDef.filter.categoryBits = CLIMBER_BIT;
-            fixDef.filter.maskBits = (short) (DEFAULT_BIT | DIAMOND_BIT | CREEP_BIT);
+            fixDef.filter.maskBits = (short) (DEFAULT_BIT | GEMSTONE_BIT | CREEP_BIT | PLATFORM_BIT);
         }
         else if(this instanceof Creep){
             bDef.type = BodyDef.BodyType.DynamicBody;
@@ -60,13 +63,18 @@ public abstract class Entity extends Sprite implements Update{
             bDef.type = BodyDef.BodyType.StaticBody;
             fixDef.filter.categoryBits = DEFAULT_BIT;
         }
+
         bDef.position.set((bounds.getX() + bounds.getWidth() / 2) / TowerClimber.PPM, (bounds.getY() + bounds.getHeight() / 2) / TowerClimber.PPM);
         b2Body = world.createBody(bDef);
 
-        pShape.setAsBox(bounds.getWidth() / 2 / TowerClimber.PPM, bounds.getHeight() / 2 / TowerClimber.PPM);
+        setPolygonBox(pShape,bounds.getWidth() / 2,bounds.getHeight() / 2);
         fixDef.shape = pShape;
         fixture = b2Body.createFixture(fixDef);
         fixture.setUserData(this);
+    }
+
+    public void setPolygonBox(PolygonShape shape, float fx, float fy){
+        shape.setAsBox(fx / TowerClimber.PPM, fy / TowerClimber.PPM);
     }
 
     public Body getB2Body() {
@@ -84,6 +92,11 @@ public abstract class Entity extends Sprite implements Update{
         fixture.setFilterData(filter);
     }
 
+    public float getEntY() {
+        return b2Body.getPosition().x;
+    }
 
-
+    public float getEntX() {
+        return b2Body.getPosition().y;
+    }
 }

@@ -17,7 +17,7 @@ import parohyapp.mario.sprites.parent.InteractiveSpriteEntity;
 public abstract class Creep extends InteractiveSpriteEntity {
     private static final String TAG = "Creep";
 
-    private Animation runningAnim;
+
 
     private Vector2 moveVector;
 
@@ -33,9 +33,17 @@ public abstract class Creep extends InteractiveSpriteEntity {
     }
 
     @Override
+    public void onColideEnd() {
+
+    }
+
+    @Override
     public void update(float delta) {
         getFrame(delta);
-        move();
+        if(currentState != State.DYING){
+            move();
+        }
+        act(delta);
         super.update(delta);
     }
 
@@ -43,31 +51,7 @@ public abstract class Creep extends InteractiveSpriteEntity {
         b2Body.setLinearVelocity(moveVector);
     }
 
-    @Override
-    public void getFrame(float delta) {
-        //TODO creep animation
-        super.getFrame(delta);
-        if(runningAnim != null){
-            TextureRegion tmpTexture = runningAnim.getKeyFrame(stateTime,true);
-            if((b2Body.getLinearVelocity().x < 0 || !facingRight) && !tmpTexture.isFlipX()){
-                tmpTexture.flip(true,false);
-                facingRight = false;
-            }
-            else if((b2Body.getLinearVelocity().x > 0 || facingRight) && tmpTexture.isFlipX()){
-                tmpTexture.flip(true,false);
-                facingRight = true;
-            }
-            flippingFrame(tmpTexture);
-            setRegion(tmpTexture);
-        }
-
-
-    }
-
-    public void setRunningAnim(Animation runningAnim, float width, float height) {
-        this.runningAnim = runningAnim;
-        setBounds(0, 0, width / TowerClimber.PPM, height / TowerClimber.PPM);
-    }
+    public abstract void act(float delta);
 
     public void switchDirection(){
         facingRight = facingRight == true ? false : true;

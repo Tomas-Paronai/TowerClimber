@@ -25,9 +25,11 @@ public class Hud implements Disposable, Update{
 
     private int lastScore;
     private int lastTime;
+    private int lastLives;
 
     private Label countDownLabel;
     private Label scoreLabel;
+    private Label livesLabel;
     private Label levelNameLabel;
 
     public Hud(SpriteBatch sb){
@@ -42,10 +44,12 @@ public class Hud implements Disposable, Update{
 
         countDownLabel = new Label(String.valueOf(0),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreLabel = new Label(String.format("Score: %06d", lastScore),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        livesLabel = new Label("Lives: "+lastLives,new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         levelNameLabel = new Label("LEVEL NAME",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
         table.add(countDownLabel).expandX().padTop(10);
         table.add(scoreLabel).expandX().padTop(10);
+        table.add(livesLabel).expandX().padTop(10);
         table.add(levelNameLabel).expandX().padTop(10);
 
         stage.addActor(table);
@@ -82,5 +86,12 @@ public class Hud implements Disposable, Update{
 
     public void setName(String name){
         levelNameLabel.setText(name);
+    }
+
+    public void setLives(int lives){
+        if(lastLives != lives){
+            lastLives = lives;
+            livesLabel.setText("Lives: "+lives);
+        }
     }
 }

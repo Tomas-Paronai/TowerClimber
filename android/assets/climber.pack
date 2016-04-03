@@ -5,44 +5,37 @@ filter: Nearest,Nearest
 repeat: none
 robot_die
   rotate: false
-  xy: 1, 85
+  xy: 1, 87
   size: 288, 32
   orig: 288, 32
   offset: 0, 0
   index: -1
-spr_ratrun_strip4_aqua
-  rotate: false
-  xy: 1, 19
-  size: 256, 64
-  orig: 256, 64
-  offset: 0, 0
-  index: 0
-robot_go
-  rotate: false
-  xy: 291, 85
-  size: 256, 32
-  orig: 256, 32
-  offset: 0, 0
-  index: -1
-robot_idle
-  rotate: false
-  xy: 259, 51
-  size: 256, 32
-  orig: 256, 32
-  offset: 0, 0
-  index: -1
 mine_die
   rotate: false
-  xy: 549, 85
+  xy: 1, 53
   size: 224, 32
   orig: 224, 32
   offset: 0, 0
   index: -1
 running
   rotate: false
-  xy: 517, 51
+  xy: 291, 87
   size: 192, 32
   orig: 192, 32
+  offset: 0, 0
+  index: -1
+robot_go
+  rotate: false
+  xy: 1, 19
+  size: 160, 32
+  orig: 160, 32
+  offset: 0, 0
+  index: -1
+robot_idle
+  rotate: false
+  xy: 227, 53
+  size: 160, 32
+  orig: 160, 32
   offset: 0, 0
   index: -1
 fireball
@@ -52,51 +45,58 @@ fireball
   orig: 160, 16
   offset: 0, 0
   index: -1
+rat_running
+  rotate: false
+  xy: 163, 19
+  size: 128, 32
+  orig: 128, 32
+  offset: 0, 0
+  index: -1
 fireball_die
   rotate: false
-  xy: 775, 85
+  xy: 389, 53
   size: 96, 32
   orig: 96, 32
   offset: 0, 0
   index: -1
 mine
   rotate: false
-  xy: 259, 33
+  xy: 163, 1
   size: 64, 16
   orig: 64, 16
   offset: 0, 0
   index: -1
 diamond
   rotate: false
-  xy: 711, 51
+  xy: 293, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 gem
   rotate: false
-  xy: 873, 85
+  xy: 327, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 idle
   rotate: false
-  xy: 745, 51
+  xy: 361, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 jump
   rotate: false
-  xy: 907, 85
+  xy: 395, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 ruby
   rotate: false
-  xy: 779, 51
+  xy: 429, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
