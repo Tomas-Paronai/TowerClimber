@@ -63,7 +63,7 @@ public abstract class Gemstone extends InteractiveSpriteEntity {
 
 
     public void createLight(){
-        light = (PointLight) LightSource.LightUtil.createPointLight(screen.getRayHandler(), 30, Color.CYAN, 40,b2Body);
+        light = (PointLight) LightSource.LightUtil.createPointLight(screen.getWorldManager().getRayHandler(), 30, Color.CYAN, 40,b2Body);
         light.setXray(true);
     }
 }

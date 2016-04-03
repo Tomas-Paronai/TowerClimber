@@ -35,10 +35,10 @@ public class SignalLight extends LightSource implements LightChangeListener {
         this.status = status;
         switch(status){
             case LOCK:
-                setLightSource(LightUtil.createPointLight(screen.getRayHandler(),20, Color.RED,30,b2Body));
+                setLightSource(LightUtil.createPointLight(screen.getWorldManager().getRayHandler(),20, Color.RED,30,b2Body));
                 break;
             case OPEN:
-                setLightSource(LightUtil.createPointLight(screen.getRayHandler(),20, Color.GREEN,30,b2Body));
+                setLightSource(LightUtil.createPointLight(screen.getWorldManager().getRayHandler(),20, Color.GREEN,30,b2Body));
                 break;
         }
 

@@ -46,7 +46,7 @@ public class WorldFactory {
 
 
 
-    public WorldFactory(World world, TiledMap map, PlayScreen screen){
+    public WorldFactory(WorldManager worldManager, World world, TiledMap map, PlayScreen screen){
 
         //ground
         if(map.getLayers().get(L_GROUND) != null){
@@ -55,7 +55,7 @@ public class WorldFactory {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
                 if (object.getProperties().containsKey("platform")) {
-                    screen.getPlatforms().add(new Ground(world, rect, screen, true));
+                    worldManager.getPlatforms().add(new Ground(world, rect, screen, true));
                 } else {
                     new Ground(world, rect, screen);
                 }
@@ -68,7 +68,7 @@ public class WorldFactory {
             for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-                screen.getEntities().add(new Diamond(world, rect, screen));
+                worldManager.getEntities().add(new Diamond(world, rect, screen));
                 screen.getGameMaster().setNumberOfGemstones(1);
             }
         }
@@ -78,7 +78,7 @@ public class WorldFactory {
             for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-                screen.getEntities().add(new Ruby(world, rect, screen));
+                worldManager.getEntities().add(new Ruby(world, rect, screen));
             }
         }
 
@@ -88,7 +88,7 @@ public class WorldFactory {
             for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-                screen.setClimber(new Climber(world, rect, screen));
+                worldManager.setClimber(new Climber(world, rect, screen));
                 break;
             }
         }
@@ -117,7 +117,7 @@ public class WorldFactory {
                     door.setOpen(false);
                 }
 
-                screen.getEntities().add(door);
+                worldManager.getEntities().add(door);
             }
         }
 
@@ -127,7 +127,7 @@ public class WorldFactory {
             for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-                screen.getEntities().add(new TestCreep(world,rect,screen));
+                worldManager.getEntities().add(new TestCreep(world,rect,screen));
             }
         }
 
@@ -169,7 +169,7 @@ public class WorldFactory {
 //                        screen.getLights().add(new RoofLight(world,rect,screen));
                     }
                     else if (type.equals("signal")){
-                        screen.getLights().add(new SignalLight(world,rect,screen));
+                        worldManager.getLights().add(new SignalLight(world,rect,screen));
                     }
 
                 }

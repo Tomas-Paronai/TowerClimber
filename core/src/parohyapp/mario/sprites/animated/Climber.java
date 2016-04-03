@@ -42,7 +42,7 @@ public class Climber extends InteractiveSpriteEntity implements HandleInput{
     }
 
     private void initLight(){
-        headGlow = LightSource.LightUtil.createPointLight(screen.getRayHandler(), 30, Color.GREEN, 30, b2Body,0,5);
+        headGlow = LightSource.LightUtil.createPointLight(screen.getWorldManager().getRayHandler(), 30, Color.GREEN, 30, b2Body,0,5);
         Filter filter = new Filter();
         filter.maskBits = (short) (DEFAULT_BIT | CREEP_BIT);
         headGlow.setContactFilter(filter);

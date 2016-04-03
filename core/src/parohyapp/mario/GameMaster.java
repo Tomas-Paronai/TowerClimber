@@ -171,11 +171,4 @@ public class GameMaster implements Update,Disposable{
         assetManager.dispose();
         textureAtlas.dispose();
     }
-
-    public static String getMapName(TiledMap map){
-        if(map.getProperties().containsKey("Name")){
-            return (String) map.getProperties().get("Name");
-        }
-        return "uknown";
-    }
 }

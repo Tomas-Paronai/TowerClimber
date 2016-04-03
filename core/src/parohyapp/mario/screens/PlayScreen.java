@@ -4,27 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import java.util.ArrayList;
-
-import box2dLight.RayHandler;
 import parohyapp.mario.GameMaster;
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.scenes.Hud;
-import parohyapp.mario.sprites.Switchable;
-import parohyapp.mario.sprites.animated.Climber;
-import parohyapp.mario.sprites.lights.tools.LightSource;
-import parohyapp.mario.sprites.parent.InteractiveSpriteEntity;
-import parohyapp.mario.sprites.standing.Ground;
-import parohyapp.mario.tools.WorldContactListener;
-import parohyapp.mario.tools.WorldFactory;
+import parohyapp.mario.tools.WorldManager;
 
 /**
  * Created by tomas on 3/24/2016.
@@ -35,6 +22,7 @@ public class PlayScreen implements Screen {
     //main variables
     private TowerClimber game;
     private GameMaster gameMaster;
+    private WorldManager worldManager;
     private OrthographicCamera gameCam;
     private Viewport gamePort;
 
@@ -43,19 +31,19 @@ public class PlayScreen implements Screen {
 
     //tiled map
 //    private TmxMapLoader mapLoader;
-    private TiledMap map;
+    //private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
 
     //box2d variables
-    private World world;
-    private Box2DDebugRenderer b2dr;
-    private Climber climber;
-    private ArrayList<InteractiveSpriteEntity> entities;
-    private ArrayList<Ground> platforms;
-    private ArrayList<LightSource> lights;
+    //private World world;
+    //private Box2DDebugRenderer b2dr;
+    //private Climber climber;
+    //private ArrayList<InteractiveSpriteEntity> entities;
+    //private ArrayList<Ground> platforms;
+    //private ArrayList<LightSource> lights;
 
     //light
-    private RayHandler rayHandler;
+    //private RayHandler rayHandler;
 
     //textures
     //private TextureAtlas textureAtlas;
@@ -76,11 +64,14 @@ public class PlayScreen implements Screen {
     }
 
     public void loadGame(){
-        //tiled map related
-        map = gameMaster.getLevelMap();
-        mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / TowerClimber.PPM);
+        worldManager = new WorldManager(game,gameMaster,this);
+        worldManager.loadWorld();
 
-        hud.setName(GameMaster.getMapName(map));
+        //tiled map related
+        //map = gameMaster.getLevelMap();
+        mapRenderer = new OrthogonalTiledMapRenderer(worldManager.getMap(), 1 / TowerClimber.PPM); //TODO
+
+        hud.setName(worldManager.getMapName());
 
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
 
@@ -89,20 +80,18 @@ public class PlayScreen implements Screen {
 
 
         //box2d variables & lights
-        world = new World(new Vector2(0,-15),true);
+        /*world = new World(new Vector2(0,-15),true);
         rayHandler = new RayHandler(world); //TODO
         b2dr = new Box2DDebugRenderer();
 
         entities = new ArrayList<InteractiveSpriteEntity>();
         platforms = new ArrayList<Ground>();
-        lights = new ArrayList<LightSource>();
-
         new WorldFactory(world,map,this);
 
         rayHandler.setAmbientLight(1f);
 
         //collision detection setup
-        world.setContactListener(new WorldContactListener());
+        world.setContactListener(new WorldContactListener());*/
 
         //postWorldSetup();
     }
@@ -118,15 +107,18 @@ public class PlayScreen implements Screen {
     }
 
     public void update(float delta){
-        world.step(1 / 60f, 6, 2);
-        rayHandler.update();
+        /*world.step(1 / 60f, 6, 2);
+        rayHandler.update();*/
 
-        gameCam.position.y = climber.getB2Body().getPosition().y + 3.5f;
-
-
+        worldManager.update(delta);
         gameMaster.update(delta);
-        updateEntities(delta);
-        updatePlatforms(delta);
+
+        gameCam.position.y = worldManager.getClimber().getB2Body().getPosition().y + 3.5f;
+
+
+        //gameMaster.update(delta);
+//        updateEntities(delta);
+//        updatePlatforms(delta);
 
         hud.setWorldTimer(gameMaster.getTime());
         hud.setScore(gameMaster.getScore());
@@ -136,7 +128,7 @@ public class PlayScreen implements Screen {
         mapRenderer.setView(gameCam);
     }
 
-    private void updatePlatforms(float delta) {
+    /*private void updatePlatforms(float delta) {
         for(Ground tempPlat : platforms){
             if(tempPlat.getB2Body().getPosition().y + 0.4f < climber.getB2Body().getPosition().y){
                 tempPlat.setGrip(true);
@@ -145,7 +137,7 @@ public class PlayScreen implements Screen {
                 tempPlat.setGrip(false);
             }
         }
-    }
+    }*/
 
     @Override
     public void render(float delta) {
@@ -158,23 +150,24 @@ public class PlayScreen implements Screen {
         //render map
         mapRenderer.render();
 
+        worldManager.render(game.getBatch(), gameCam);
         //render objects
-        b2dr.render(world, gameCam.combined);
+        //b2dr.render(world, gameCam.combined);
 
         //render climber
-        game.getBatch().setProjectionMatrix(gameCam.combined);
-        renderEntities();
+//        game.getBatch().setProjectionMatrix(gameCam.combined);
+//        renderEntities();
 
         //light
-        rayHandler.setCombinedMatrix(gameCam.combined);
-        rayHandler.render();
+//        rayHandler.setCombinedMatrix(gameCam.combined);
+//        rayHandler.render();
 
         //render HUD
         game.getBatch().setProjectionMatrix(hud.getStage().getCamera().combined);
         hud.getStage().draw();
     }
 
-    private void renderEntities(){
+    /*private void renderEntities(){
         game.getBatch().begin();
         InteractiveSpriteEntity lastDraw = null;
         for(InteractiveSpriteEntity ent : entities){
@@ -189,13 +182,13 @@ public class PlayScreen implements Screen {
             lastDraw.draw(game.getBatch());
         }
         game.getBatch().end();
-    }
+    }*/
 
-    private void updateEntities(float delta){
+    /*private void updateEntities(float delta){
         for(InteractiveSpriteEntity ent : entities){
             ent.update(delta);
         }
-    }
+    }*/
 
     @Override
     public void resize(int width, int height) {
@@ -219,26 +212,31 @@ public class PlayScreen implements Screen {
 
     @Override
     public void dispose() {
-        map.dispose();
+        //map.dispose();
+        worldManager.dispose();
         mapRenderer.dispose();
-        world.dispose();
-        b2dr.dispose();
+        //world.dispose();
+        //b2dr.dispose();
         hud.dispose();
         gameMaster.dispose();
         game.getBatch().dispose();
-        rayHandler.dispose();
+        //rayHandler.dispose();
     }
 
-    public Climber getClimber() {
+    /*public Climber getClimber() {
         return climber;
+    }*/
+
+    public WorldManager getWorldManager(){
+        return worldManager;
     }
 
-    public void setClimber(Climber climber) {
+    /*public void setClimber(Climber climber) {
         this.climber = climber;
         entities.add(climber);
-    }
+    }*/
 
-    public ArrayList<InteractiveSpriteEntity> getEntities() {
+    /*public ArrayList<InteractiveSpriteEntity> getEntities() {
         return entities;
     }
 
@@ -258,13 +256,13 @@ public class PlayScreen implements Screen {
             }
         }
         return switchables;
-    }
+    }*/
 
     public GameMaster getGameMaster() {
         return gameMaster;
     }
 
-    public RayHandler getRayHandler() {
+    /*public RayHandler getRayHandler() {
         return rayHandler;
-    }
+    }*/
 }
