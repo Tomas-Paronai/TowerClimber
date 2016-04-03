@@ -1,11 +1,16 @@
 package parohyapp.mario.sprites.standing.switches;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
+
+import java.util.ArrayList;
 
 import parohyapp.mario.screens.PlayScreen;
 import parohyapp.mario.sprites.Switchable;
 import parohyapp.mario.sprites.lights.tools.LightChangeListener;
+import parohyapp.mario.sprites.lights.tools.LightStatus;
+import parohyapp.mario.sprites.parent.Entity;
 import parohyapp.mario.sprites.parent.InteractiveSpriteEntity;
 
 /**
@@ -13,16 +18,17 @@ import parohyapp.mario.sprites.parent.InteractiveSpriteEntity;
  */
 public abstract class Switch extends InteractiveSpriteEntity {
 
+    protected Animation toggleAnimation;
     private boolean toggle;
-    private Switchable lightListener;
-    private LightChangeListener lightChangeListener;
+    private ArrayList<Switchable> listenerSwicth;
+    private ArrayList<LightChangeListener> lightChangeListener;
 
     public Switch(World world, Rectangle bounds, PlayScreen screen) {
         super(world, bounds, screen);
-        initConnection();
+        setCategoryFilter(Entity.SWITCH_BIT);
     }
 
-    public abstract void initConnection();
+    public abstract void initConnection(SwitchableType... type);
 
     public void toggleSwitch(){
         toggle = isToggle() ? false : true;
@@ -38,20 +44,30 @@ public abstract class Switch extends InteractiveSpriteEntity {
 
     @Override
     public void onColide() {
-        if(lightListener != null){
-            lightListener.toggle();
+        if(listenerSwicth != null){
+            for(Switchable tmpSwitch : listenerSwicth){
+                tmpSwitch.toggle();
+            }
+        }
 
-            if(lightChangeListener != null){
-
+        if(lightChangeListener != null){
+            for(LightChangeListener tmpSwitch : lightChangeListener){
+                tmpSwitch.changeLightStatus(LightStatus.DOOR);
             }
         }
     }
 
-    public void setLightListener(Switchable lightListener) {
-        this.lightListener = lightListener;
+    public void setListener(Switchable listener) {
+        if(listenerSwicth == null){
+            listenerSwicth = new ArrayList<Switchable>();
+        }
+        listenerSwicth .add(listener);
     }
 
-    public void setLightChangeListener(LightChangeListener lightChangeListener) {
-        this.lightChangeListener = lightChangeListener;
+    public void setLightChangeListener(LightChangeListener listener) {
+        if(lightChangeListener == null){
+            lightChangeListener = new ArrayList<LightChangeListener>();
+        }
+        lightChangeListener.add(listener);
     }
 }

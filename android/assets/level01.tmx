@@ -192,11 +192,5 @@
     <property name="exit" value="true"/>
    </properties>
   </object>
-  <object id="164" x="192" y="2272" width="16" height="32">
-   <properties>
-    <property name="doorz" value="back"/>
-    <property name="exit" value="true"/>
-   </properties>
-  </object>
  </objectgroup>
 </map>

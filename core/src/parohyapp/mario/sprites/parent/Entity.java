@@ -35,6 +35,7 @@ public abstract class Entity extends Sprite implements Update{
     public static short MARK_BIT = 32;
     public static short PLATFORM_BIT = 64;
     public static short LSOURCE_BIT = 128;
+    public static short SWITCH_BIT = 256;
 
 
     public Entity(World world, Rectangle bounds) {
@@ -52,7 +53,7 @@ public abstract class Entity extends Sprite implements Update{
         if(this instanceof Climber){
             bDef.type = BodyDef.BodyType.DynamicBody;
             fixDef.filter.categoryBits = CLIMBER_BIT;
-            fixDef.filter.maskBits = (short) (DEFAULT_BIT | GEMSTONE_BIT | CREEP_BIT | PLATFORM_BIT);
+            fixDef.filter.maskBits = (short) (DEFAULT_BIT | GEMSTONE_BIT | CREEP_BIT | PLATFORM_BIT | SWITCH_BIT);
         }
         else if(this instanceof Creep){
             bDef.type = BodyDef.BodyType.DynamicBody;

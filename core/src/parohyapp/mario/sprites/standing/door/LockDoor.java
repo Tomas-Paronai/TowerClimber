@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import parohyapp.mario.screens.PlayScreen;
 import parohyapp.mario.sprites.Switchable;
 import parohyapp.mario.sprites.standing.switches.Switch;
+import parohyapp.mario.sprites.standing.switches.SwitchableType;
 
 /**
  * Created by tomas on 4/3/2016.
@@ -45,5 +46,10 @@ public class LockDoor extends Door implements Switchable{
         if(isUnlocked()){
             setOpen(true);
         }
+    }
+
+    @Override
+    public SwitchableType getTag() {
+        return SwitchableType.DOOR;
     }
 }

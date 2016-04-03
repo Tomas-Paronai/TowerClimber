@@ -8,6 +8,8 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import javax.naming.Name;
+
 import parohyapp.mario.GameMaster;
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.scenes.Hud;
@@ -31,6 +33,7 @@ public class PlayScreen implements Screen {
 
     //tiled map renderer
     private OrthogonalTiledMapRenderer mapRenderer;
+    private Name lights;
 
     public PlayScreen(TowerClimber game){
         //main variables
@@ -56,7 +59,7 @@ public class PlayScreen implements Screen {
 
         hud.setName(worldManager.getMapName());
 
-        gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
+        gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
     }
 
 
@@ -102,7 +105,7 @@ public class PlayScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        gamePort.update(width,height);
+        gamePort.update(width, height);
     }
 
     @Override
@@ -136,4 +139,5 @@ public class PlayScreen implements Screen {
     public GameMaster getGameMaster() {
         return gameMaster;
     }
+
 }

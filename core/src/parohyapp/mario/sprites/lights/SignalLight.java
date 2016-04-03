@@ -9,6 +9,7 @@ import parohyapp.mario.sprites.Switchable;
 import parohyapp.mario.sprites.lights.tools.*;
 import parohyapp.mario.sprites.lights.tools.LightStatus;
 import parohyapp.mario.sprites.parent.Entity;
+import parohyapp.mario.sprites.standing.switches.SwitchableType;
 
 /**
  * Created by tomas on 4/3/2016.
@@ -60,11 +61,27 @@ public class SignalLight extends LightSource implements LightChangeListener {
 
     @Override
     public void changeLightStatus(LightStatus status) {
+
+        if(status == LightStatus.DOOR){
+            if(getLightStatus() == LightStatus.LOCK){
+                initLight(LightStatus.OPEN);
+            }
+            else{
+                initLight(LightStatus.LOCK);
+            }
+            return;
+        }
+
         initLight(status);
     }
 
     @Override
     public LightStatus getLightStatus() {
         return status;
+    }
+
+    @Override
+    public SwitchableType getTag() {
+        return SwitchableType.SIGNAL;
     }
 }

@@ -20,6 +20,7 @@ public enum Resources {
     DOOR_FRONT("sprites/door_front.png",ResType.TEXTURE),
     DOOR_BACK("sprites/door_back.png",ResType.TEXTURE),
     DOOR_BG("sprites/door_bg.png",ResType.TEXTURE),
+    LEVER("sprites/lever.png",ResType.TEXTURE),
 
     //audio
     A_JUMP("audio/jump.wav",ResType.SOUND),

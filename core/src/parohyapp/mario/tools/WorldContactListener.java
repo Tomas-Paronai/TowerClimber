@@ -9,9 +9,11 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 import parohyapp.mario.sprites.animated.Climber;
 import parohyapp.mario.sprites.animated.Creep;
+import parohyapp.mario.sprites.lights.SignalLight;
 import parohyapp.mario.sprites.parent.Entity;
 import parohyapp.mario.sprites.parent.InteractiveSpriteEntity;
 import parohyapp.mario.sprites.standing.Ground;
+import parohyapp.mario.sprites.standing.door.Door;
 
 /**
  * Created by tomas on 3/25/2016.
@@ -26,7 +28,18 @@ public class WorldContactListener implements ContactListener{
         if(A.getUserData() instanceof Entity && B.getUserData() instanceof Entity){
             //Gdx.app.log(TAG,"A: "+((Entity)A.getUserData()).getEntX()+" "+((Entity)A.getUserData()).getEntY());
             //Gdx.app.log(TAG,"B: "+((Entity)B.getUserData()).getEntX()+" "+((Entity)B.getUserData()).getEntY());
+
+            /*if(A.getUserData() instanceof SignalLight || B.getUserData() instanceof SignalLight){
+                Fixture light = A.getUserData() instanceof SignalLight ? A : B;
+                Fixture object = A == light ? B : A;
+                if(object.getUserData() instanceof Door){
+                    Gdx.app.log(TAG,"#####");
+                }
+
+            }*/
         }
+
+
 
         if(A.getUserData() instanceof Climber || B.getUserData() instanceof Climber){
             Fixture player = A.getUserData() instanceof Climber ? A : B;

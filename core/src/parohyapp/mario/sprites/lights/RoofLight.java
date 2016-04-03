@@ -5,12 +5,14 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 
 import parohyapp.mario.screens.PlayScreen;
+import parohyapp.mario.sprites.lights.tools.LightSource;
 import parohyapp.mario.sprites.parent.Entity;
+import parohyapp.mario.sprites.standing.switches.SwitchableType;
 
 /**
  * Created by tomas on 4/3/2016.
  */
-public class RoofLight extends parohyapp.mario.sprites.lights.tools.LightSource {
+public class RoofLight extends LightSource {
 
     public RoofLight(World world, Rectangle bounds, PlayScreen screen) {
         super(world, bounds, screen);
@@ -19,5 +21,4 @@ public class RoofLight extends parohyapp.mario.sprites.lights.tools.LightSource 
         setLightMaskFilter((short) (Entity.DEFAULT_BIT | Entity.CLIMBER_BIT | Entity.CREEP_BIT));
         fixture.setSensor(true);
     }
-
 }

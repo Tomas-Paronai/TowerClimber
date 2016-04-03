@@ -12,6 +12,7 @@ import parohyapp.mario.TowerClimber;
 import parohyapp.mario.screens.PlayScreen;
 import parohyapp.mario.sprites.Switchable;
 import parohyapp.mario.sprites.parent.Entity;
+import parohyapp.mario.sprites.standing.switches.SwitchableType;
 import parohyapp.mario.tools.ResourcesUtil;
 
 /**
@@ -51,6 +52,11 @@ public abstract class LightSource extends Entity implements Switchable{
         else{
             lightSource.setActive(true);
         }
+    }
+
+    @Override
+    public SwitchableType getTag() {
+        return SwitchableType.LIGHT;
     }
 
     public static class LightUtil {
