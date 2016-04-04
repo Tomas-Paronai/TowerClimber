@@ -29,7 +29,7 @@ public abstract class InteractiveSpriteEntity extends Entity{
     protected boolean facingRight;
 
     public InteractiveSpriteEntity(World world, Rectangle bounds, PlayScreen screen){
-        super(world,bounds);
+        super(world,bounds,screen.getWorldManager());
         this.screen = screen;
         initTexture();
         setPosition(b2Body.getPosition().x - getWidth() / 2, b2Body.getPosition().y - getHeight() / 2);

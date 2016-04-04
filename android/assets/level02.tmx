@@ -27,7 +27,7 @@
  </layer>
  <layer name="graphic front" width="25" height="150">
   <data encoding="base64" compression="zlib">
-   eJztmb1OwzAUhV0Gti4sKFSIVPyqBYHEA7CzdWt5ju6IialS4f14FxzZSMH1dZz4xk7d80lHjV3Hx2ns65tUCAAAAADkxLNnXeg5AAAAFIi7AOTLTOs+9UAAOHD63GtnDmHtg76ZC8y5mCBvV9TnHeYcAO1xxYDCaFNQDRv6cWH26fKwcSN1bWhplIuG8q2ljzsP763UhOk6KKZSK0+PKZMnBz7zgasNAENmQdRTc9us92lHeXACj/+caNn6r3tsifOvpIpRs49tLzE9lg6P044eJjE8Qgn14LyOCVF/zvxbXVjqSk+PUtD3dWhcGuX3oyTDCMI35oNduua31DqMRXVvXy3ivud/+8GxUe7DgyrviwdQdHkGyzmGzR3fVfvsWayBROAnkkcf67e+F+yTx5tWSqg8yqd+IdLmXR86r20bg3KOWUOnlPoS6jm40nfS0bTnhTg+dJr+U/TNG2K8FxgCGxm71jp2rhlj6KimjY6PT3zd73h8Eu8WQt8jmNfxIFS+VX0+6v7LQI/cGGtxnjuGvPULliMwYw==
+   eJztmU1OwzAQhV2WSN2wQaFCpOJXLQgkDsCeXXeFc3SPWLGqVDgOd+EuOLKRgutxnHhip+77pKfUruPnNPZ4kgoBAAAAgJx49KwLPQcAAIACcReAfJlp3aYeCAB7Tp977cwhrH3QN3OBORcT5O2K+rzDnAOgPa4YUBhtCqphQz8uzD5dHjaupC4NLY1y0VC+tvRx4+G9kZowXQfFVOrF02PK5MmBz3zgagPAkFkQ9dTcNut92lEenMDjP0datv7rHhvi/AupYtTsY9tLTI+lw+O4o4dJDI9QQj04r2NC1J8y/1ZnlrrS06MU9H0dGudG+e0gyTCC8I35YJuu+S21DmNR3dtni7jv+d9+cGiU+/CgyrviARRdnsFyjmFzx3fVPnsSayAR+Ink0cf6re8Fu+TxqpUSKo/yqV+ItHnXu85r28agnGPW0CmlPoV6Dq70lXQ07XkiPu87Tf8p+uYNMd4LpORbx6y1PK507FwxxtBRTWvt9cDX/ZbHB/FuIfQ9gnkdd0LlW9XxXvdfBnrkxliL89wx5K1fpbMxIg==
   </data>
  </layer>
  <layer name="detail" width="25" height="150">
@@ -203,6 +203,7 @@
   <object id="181" x="208" y="1760" width="16" height="16">
    <properties>
     <property name="connect" value="true"/>
+    <property name="lock" value="true"/>
     <property name="type" value="signal"/>
    </properties>
   </object>

@@ -25,6 +25,7 @@ public class Door extends InteractiveSpriteEntity implements Switchable{
     private boolean exit;
     private boolean open;
     private boolean connectable;
+    private SwitchableType tag;
 
     public Door(World world, Rectangle bounds, PlayScreen screen, DoorZ type) {
         super(world, bounds, screen);
@@ -86,7 +87,15 @@ public class Door extends InteractiveSpriteEntity implements Switchable{
     }
 
     @Override
+    public void setTag(SwitchableType tag) {
+        this.tag = tag;
+    }
+
+    @Override
     public SwitchableType getTag() {
+        if(tag != null){
+            return tag;
+        }
         return SwitchableType.DOOR;
     }
 

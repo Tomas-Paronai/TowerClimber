@@ -97,11 +97,11 @@ public class Climber extends InteractiveSpriteEntity implements HandleInput{
         //currentState = getState();
         TextureRegion tmpTexture;
 
-        if(currentState == State.IDLE || currentState == State.FALLING){
+        if(currentState == State.IDLE){
             //Gdx.app.log(TAG,"I am idle.");
             tmpTexture = new TextureRegion(idle);
         }
-        else if(currentState == State.JUMPING){
+        else if(currentState == State.JUMPING || currentState == State.FALLING){
             //Gdx.app.log(TAG, "I am jumping. ");
             tmpTexture = new TextureRegion(jump);
         }

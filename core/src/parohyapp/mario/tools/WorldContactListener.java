@@ -1,6 +1,5 @@
 package parohyapp.mario.tools;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -9,11 +8,9 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 import parohyapp.mario.sprites.animated.Climber;
 import parohyapp.mario.sprites.animated.Creep;
-import parohyapp.mario.sprites.lights.SignalLight;
 import parohyapp.mario.sprites.parent.Entity;
 import parohyapp.mario.sprites.parent.InteractiveSpriteEntity;
 import parohyapp.mario.sprites.standing.Ground;
-import parohyapp.mario.sprites.standing.door.Door;
 
 /**
  * Created by tomas on 3/25/2016.

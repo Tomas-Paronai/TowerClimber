@@ -35,6 +35,21 @@ public class Lever extends Switch {
         setRegion(toggleAnimation.getKeyFrames()[0]);
     }
 
+    @Override
+    public void update(float delta) {
+        if(toggle){
+            getFrame(delta);
+        }
+    }
+
+    @Override
+    public void getFrame(float delta) {
+        super.getFrame(delta);
+
+        if(toggle && !toggleAnimation.isAnimationFinished(stateTime)){
+            setRegion(toggleAnimation.getKeyFrame(stateTime));
+        }
+    }
 
     @Override
     public void onColideEnd() {

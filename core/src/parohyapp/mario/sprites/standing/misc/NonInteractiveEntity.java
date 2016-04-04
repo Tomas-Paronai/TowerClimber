@@ -11,7 +11,7 @@ import parohyapp.mario.sprites.parent.Entity;
 public class NonInteractiveEntity extends Entity{
 
     public NonInteractiveEntity(World world, Rectangle bounds) {
-        super(world, bounds);
+        super(world, bounds,null);
         fixture.setSensor(true);
     }
 }

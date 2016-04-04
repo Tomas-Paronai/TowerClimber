@@ -16,6 +16,7 @@ import parohyapp.mario.sprites.animated.Climber;
 import parohyapp.mario.sprites.animated.Creep;
 import parohyapp.mario.sprites.standing.gems.Gemstone;
 import parohyapp.mario.tools.Update;
+import parohyapp.mario.tools.WorldManager;
 
 /**
  * Created by tomas on 3/25/2016.
@@ -23,6 +24,7 @@ import parohyapp.mario.tools.Update;
 public abstract class Entity extends Sprite implements Update{
     protected Rectangle bounds;
     protected World world;
+    protected WorldManager worldManager;
     protected Body b2Body;
 
     protected Fixture fixture;
@@ -38,9 +40,10 @@ public abstract class Entity extends Sprite implements Update{
     public static short SWITCH_BIT = 256;
 
 
-    public Entity(World world, Rectangle bounds) {
+    public Entity(World world, Rectangle bounds, WorldManager worldManager) {
         this.bounds = bounds;
         this.world = world;
+        this.worldManager = worldManager;
 
         initRectangle();
     }

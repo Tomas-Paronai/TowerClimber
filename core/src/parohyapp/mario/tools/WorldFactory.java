@@ -2,7 +2,6 @@ package parohyapp.mario.tools;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -20,10 +19,12 @@ import java.util.ArrayList;
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.screens.PlayScreen;
 import parohyapp.mario.sprites.animated.Climber;
+import parohyapp.mario.sprites.lights.SignalLight.OneWaySignalLight;
 import parohyapp.mario.sprites.lights.RoofLight;
-import parohyapp.mario.sprites.lights.SignalLight;
+import parohyapp.mario.sprites.lights.SignalLight.SignalLight;
 import parohyapp.mario.sprites.lights.WallLight;
 import parohyapp.mario.sprites.lights.tools.LightSource;
+import parohyapp.mario.sprites.lights.tools.LightStatus;
 import parohyapp.mario.sprites.standing.door.Door;
 import parohyapp.mario.sprites.standing.door.DoorZ;
 import parohyapp.mario.sprites.standing.gems.Diamond;
@@ -108,7 +109,7 @@ public class WorldFactory {
             for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-                Door door = null;
+                Door door;
                 if(object.getProperties().containsKey("doorz")){
                     String property = (String) object.getProperties().get("doorz");
                     if(property.equals("back")){
@@ -147,7 +148,7 @@ public class WorldFactory {
             for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-                worldManager.getEntities().add(new TestCreep(world,rect,screen));
+                worldManager.getEntities().add(new TestCreep(world, rect, screen));
             }
         }
 
@@ -183,17 +184,33 @@ public class WorldFactory {
             for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-                LightSource light = null;
+                LightSource light;
                 if(object.getProperties().containsKey("type")){
                     String type = (String) object.getProperties().get("type");
+
                     if(type.equals("roof")){
                         light = new RoofLight(world,rect,screen);
                     }
+
                     else if (type.equals("signal")){
-                        light = new SignalLight(world,rect,screen);
+
+
+                        if(object.getProperties().containsKey("lock")){
+                            Gdx.app.log(TAG,"Creating signal light with status");
+                            light = new OneWaySignalLight(world,rect,screen,LightStatus.LOCK);
+                        }
+                        else{
+                            Gdx.app.log(TAG,"Creating signal light");
+                            light = new SignalLight(world,rect,screen);
+                        }
+                    }
+
+                    else{
+                        light = new WallLight(world,rect,screen);
                     }
 
                 }
+
                 else{
                     light = new WallLight(world,rect,screen);
                 }
@@ -252,6 +269,7 @@ public class WorldFactory {
         while(object.getProperties().containsKey(identifier)){
             String value = (String) object.getProperties().get(identifier);
 
+            Gdx.app.log(TAG,"Adding switchable: "+value);
             if(value.equals("signal")){
                 types.add(SwitchableType.SIGNAL);
             }

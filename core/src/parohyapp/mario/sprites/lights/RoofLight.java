@@ -21,4 +21,10 @@ public class RoofLight extends LightSource {
         setLightMaskFilter((short) (Entity.DEFAULT_BIT | Entity.CLIMBER_BIT | Entity.CREEP_BIT));
         fixture.setSensor(true);
     }
+
+    public RoofLight(World world, Rectangle bounds, PlayScreen screen, float angle) {
+        this(world, bounds, screen);
+        getLightSource().remove();
+        setLightSource(parohyapp.mario.sprites.lights.tools.LightSource.LightUtil.createConeLight(screen.getWorldManager().getRayHandler(), 30, Color.WHITE, 350, angle, 20, b2Body));
+    }
 }

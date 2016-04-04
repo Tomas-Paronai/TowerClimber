@@ -1,5 +1,6 @@
 package parohyapp.mario.sprites.lights.tools;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -19,14 +20,16 @@ import parohyapp.mario.tools.ResourcesUtil;
  * Created by tomas on 4/3/2016.
  */
 public abstract class LightSource extends Entity implements Switchable{
+    private final static String TAG = "LightSource";
 
     private box2dLight.Light lightSource;
     protected PlayScreen screen;
+    private SwitchableType tag;
 
     private boolean connectable;
 
     public LightSource(World world, Rectangle bounds, PlayScreen screen){
-        super(world, bounds);
+        super(world, bounds,screen.getWorldManager());
         this.screen = screen;
     }
 
@@ -57,7 +60,16 @@ public abstract class LightSource extends Entity implements Switchable{
     }
 
     @Override
+    public void setTag(SwitchableType tag) {
+        this.tag = tag;
+    }
+
+    @Override
     public SwitchableType getTag() {
+        if(tag != null){
+            Gdx.app.log(TAG,"Returning LightSource Tag");
+            return tag;
+        }
         return SwitchableType.LIGHT;
     }
 

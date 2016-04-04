@@ -152,11 +152,15 @@ public class WorldManager implements Disposable{
 
     public ArrayList<Switchable> getAllSwitchables(){
         ArrayList<Switchable> switchables = new ArrayList<Switchable>();
+
         for(InteractiveSpriteEntity ent : entities){
             if(ent instanceof Switchable){
                 switchables.add((Switchable) ent);
             }
         }
+
+        switchables.addAll(lights);
+
         return switchables;
     }
 
