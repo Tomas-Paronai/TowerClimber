@@ -23,6 +23,8 @@ public abstract class LightSource extends Entity implements Switchable{
     private box2dLight.Light lightSource;
     protected PlayScreen screen;
 
+    private boolean connectable;
+
     public LightSource(World world, Rectangle bounds, PlayScreen screen){
         super(world, bounds);
         this.screen = screen;
@@ -57,6 +59,16 @@ public abstract class LightSource extends Entity implements Switchable{
     @Override
     public SwitchableType getTag() {
         return SwitchableType.LIGHT;
+    }
+
+    @Override
+    public void setConnectable(boolean connectable) {
+        this.connectable = connectable;
+    }
+
+    @Override
+    public boolean isConnectable() {
+        return connectable;
     }
 
     public static class LightUtil {

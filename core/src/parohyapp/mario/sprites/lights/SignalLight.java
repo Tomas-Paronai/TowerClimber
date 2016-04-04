@@ -16,7 +16,7 @@ import parohyapp.mario.sprites.standing.switches.SwitchableType;
  */
 public class SignalLight extends LightSource implements LightChangeListener {
 
-    public static int amount = 0;
+    public static int amount;
     private int id;
     private LightStatus status;
     private Switchable listener;
@@ -28,8 +28,7 @@ public class SignalLight extends LightSource implements LightChangeListener {
         setCategoryFilter(Entity.LSOURCE_BIT);
         fixture.setSensor(true);
 
-        incrementSignalLight();
-        id = SignalLight.amount;
+        id = SignalLight.amount++;
     }
 
     public void initLight(LightStatus status){
@@ -44,10 +43,6 @@ public class SignalLight extends LightSource implements LightChangeListener {
         }
 
         setLightMaskFilter((short) (Entity.DEFAULT_BIT | Entity.CLIMBER_BIT | Entity.CREEP_BIT));
-    }
-
-    public static void incrementSignalLight(){
-        amount++;
     }
 
     public void setStatus(LightStatus status) {

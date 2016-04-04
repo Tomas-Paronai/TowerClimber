@@ -8,4 +8,6 @@ import parohyapp.mario.sprites.standing.switches.SwitchableType;
 public interface Switchable {
     public void toggle();
     public SwitchableType getTag();
+    public void setConnectable(boolean conn);
+    public boolean isConnectable();
 }

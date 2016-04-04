@@ -91,7 +91,7 @@ public class WorldManager implements Disposable{
 
     private void updatePlatforms(float delta) {
         for(Ground tempPlat : platforms){
-            if(tempPlat.getB2Body().getPosition().y + 0.4f < climber.getB2Body().getPosition().y){
+            if(tempPlat.getB2Body().getPosition().y < climber.getB2Body().getPosition().y){
                 tempPlat.setGrip(true);
             }
             else{

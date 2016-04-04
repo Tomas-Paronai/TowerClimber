@@ -13,9 +13,11 @@ import parohyapp.mario.sprites.standing.switches.SwitchableType;
 /**
  * Created by tomas on 4/3/2016.
  */
+@Deprecated
 public class LockDoor extends Door implements Switchable{
 
     private ArrayList<Switch> switches;
+    private boolean connectable;
 
     public static int amount = 0;
     private int id;
@@ -51,5 +53,15 @@ public class LockDoor extends Door implements Switchable{
     @Override
     public SwitchableType getTag() {
         return SwitchableType.DOOR;
+    }
+
+    @Override
+    public void setConnectable(boolean conn) {
+        connectable = conn;
+    }
+
+    @Override
+    public boolean isConnectable() {
+        return connectable;
     }
 }

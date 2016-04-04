@@ -202,6 +202,7 @@
   </object>
   <object id="181" x="208" y="1760" width="16" height="16">
    <properties>
+    <property name="connect" value="true"/>
     <property name="type" value="signal"/>
    </properties>
   </object>
@@ -242,6 +243,7 @@
   </object>
   <object id="183" x="208" y="1776" width="16" height="32">
    <properties>
+    <property name="connect" value="true"/>
     <property name="doorz" value="front"/>
     <property name="exit" value="true"/>
     <property name="lock" value="true"/>
@@ -251,8 +253,8 @@
  <objectgroup name="switch">
   <object id="185" x="224" y="2208" width="16" height="16">
    <properties>
-    <property name="conn" value="signal"/>
-    <property name="open" value=""/>
+    <property name="conn1" value="signal"/>
+    <property name="conn2" value="door"/>
     <property name="type" value="lever"/>
    </properties>
   </object>

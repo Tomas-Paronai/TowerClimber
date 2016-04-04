@@ -40,19 +40,4 @@ public class Lever extends Switch {
     public void onColideEnd() {
 
     }
-
-    @Override
-    public void initConnection(SwitchableType... type) {
-        ArrayList<Switchable> switchables = screen.getWorldManager().getAllSwitchables();
-        for(Switchable tmpSwitchable : switchables){
-
-            for(SwitchableType tmpType : type){
-                if(tmpSwitchable.getTag() == tmpType){
-                    setListener(tmpSwitchable);
-                    break;
-                }
-            }
-
-        }
-    }
 }

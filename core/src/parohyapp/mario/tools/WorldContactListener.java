@@ -47,7 +47,7 @@ public class WorldContactListener implements ContactListener{
 
             if(object.getUserData() instanceof InteractiveSpriteEntity && !(object.getUserData() instanceof Creep)){
                 ((InteractiveSpriteEntity)object.getUserData()).onColide();
-                Gdx.app.log(TAG, "A: " + A.getUserData() + " B: " + B.getUserData());
+                //Gdx.app.log(TAG, "A: " + A.getUserData() + " B: " + B.getUserData());
             }
 
             else if(object.getUserData() instanceof Creep){

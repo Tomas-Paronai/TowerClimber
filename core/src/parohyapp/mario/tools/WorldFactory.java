@@ -1,5 +1,6 @@
 package parohyapp.mario.tools;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapObject;
@@ -14,11 +15,15 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import java.util.ArrayList;
+
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.screens.PlayScreen;
 import parohyapp.mario.sprites.animated.Climber;
 import parohyapp.mario.sprites.lights.RoofLight;
 import parohyapp.mario.sprites.lights.SignalLight;
+import parohyapp.mario.sprites.lights.WallLight;
+import parohyapp.mario.sprites.lights.tools.LightSource;
 import parohyapp.mario.sprites.standing.door.Door;
 import parohyapp.mario.sprites.standing.door.DoorZ;
 import parohyapp.mario.sprites.standing.gems.Diamond;
@@ -28,6 +33,7 @@ import parohyapp.mario.sprites.parent.Entity;
 import parohyapp.mario.sprites.standing.gems.Ruby;
 import parohyapp.mario.sprites.standing.misc.NonInteractiveEntity;
 import parohyapp.mario.sprites.standing.switches.Switch;
+import parohyapp.mario.sprites.standing.switches.SwitchableType;
 import parohyapp.mario.sprites.standing.switches.lever.Lever;
 
 /**
@@ -126,6 +132,11 @@ public class WorldFactory {
                     door.setOpen(false);
                 }
 
+                if(object.getProperties().containsKey("connect")){
+                    door.setConnectable(true);
+                }
+
+                Gdx.app.log(TAG,"DOOR: Conn:"+door.isConnectable()+" Exit:"+door.isExit()+" Open:"+door.isOpen());
                 worldManager.getEntities().add(door);
             }
         }
@@ -172,20 +183,26 @@ public class WorldFactory {
             for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
+                LightSource light = null;
                 if(object.getProperties().containsKey("type")){
                     String type = (String) object.getProperties().get("type");
                     if(type.equals("roof")){
-                        worldManager.getLights().add(new RoofLight(world,rect,screen));
+                        light = new RoofLight(world,rect,screen);
                     }
                     else if (type.equals("signal")){
-                        worldManager.getLights().add(new SignalLight(world,rect,screen));
+                        light = new SignalLight(world,rect,screen);
                     }
 
                 }
                 else{
-//                    screen.getLights().add(new WallLight(world,rect,screen));
+                    light = new WallLight(world,rect,screen);
                 }
 
+                if(object.getProperties().containsKey("connect")){
+                    light.setConnectable(true);
+                }
+
+                worldManager.getLights().add(light);
             }
         }
 
@@ -207,6 +224,8 @@ public class WorldFactory {
                     tmpSwitch = new Lever(world,rect,screen);
                 }
 
+                connectDevices(object, tmpSwitch);
+
                 screen.getWorldManager().getEntities().add(tmpSwitch);
 
             }
@@ -224,5 +243,28 @@ public class WorldFactory {
 
 
 
+    }
+
+    private void connectDevices(MapObject object, Switch tmpSwitch) {
+        int index = 1;
+        String identifier = "conn"+index++;
+        ArrayList<SwitchableType> types = new ArrayList<SwitchableType>();
+        while(object.getProperties().containsKey(identifier)){
+            String value = (String) object.getProperties().get(identifier);
+
+            if(value.equals("signal")){
+                types.add(SwitchableType.SIGNAL);
+            }
+            else if(value.equals("door")){
+                types.add(SwitchableType.DOOR);
+            }
+            else if(value.equals("light")){
+                types.add(SwitchableType.LIGHT);
+            }
+
+            identifier = "conn"+index++;
+        }
+
+        tmpSwitch.initConnection(types);
     }
 }
