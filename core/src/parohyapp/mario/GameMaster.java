@@ -38,7 +38,7 @@ public class GameMaster implements Update,Disposable{
 
     private Music music;
 
-    private String[] levels = {"level01.tmx","level02.tmx","level1.tmx","level2.tmx","test_level1.tmx","test_level2.tmx"};
+    private String[] levels = {"level01.tmx","level02.tmx","level03.tmx","level04.tmx","level1.tmx","level2.tmx","test_level1.tmx","test_level2.tmx"};
     private int numberOfLevels;
     private int currentLevel;
 
@@ -162,8 +162,8 @@ public class GameMaster implements Update,Disposable{
     }
 
     public boolean isFinished() {
-        //return finished;
-        return true;
+        return finished;
+        //return true;
     }
 
     @Override

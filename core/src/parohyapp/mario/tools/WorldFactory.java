@@ -16,7 +16,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.screens.PlayScreen;
 import parohyapp.mario.sprites.animated.Climber;
+import parohyapp.mario.sprites.lights.RoofLight;
 import parohyapp.mario.sprites.lights.SignalLight;
+import parohyapp.mario.sprites.lights.WallLight;
 import parohyapp.mario.sprites.standing.door.Door;
 import parohyapp.mario.sprites.standing.door.DoorZ;
 import parohyapp.mario.sprites.standing.gems.Diamond;
@@ -166,7 +168,7 @@ public class WorldFactory {
                 if(object.getProperties().containsKey("type")){
                     String type = (String) object.getProperties().get("type");
                     if(type.equals("roof")){
-//                        screen.getLights().add(new RoofLight(world,rect,screen));
+                        worldManager.getLights().add(new RoofLight(world,rect,screen));
                     }
                     else if (type.equals("signal")){
                         worldManager.getLights().add(new SignalLight(world,rect,screen));
@@ -174,7 +176,7 @@ public class WorldFactory {
 
                 }
                 else{
-//                    screen.getLights().add(new WallLight(world,rect,screen));
+                    worldManager.getLights().add(new WallLight(world,rect,screen));
                 }
 
             }
