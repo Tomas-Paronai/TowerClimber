@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="cartoon_tiles" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="56">
+  <image source="cartoon_tiles.png" width="1024" height="54"/>
+ </tileset>
+ <tileset firstgid="169" name="cartoon_tiles_left" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="3">
+  <image source="cartoon_tiles_left.png" width="54" height="1024"/>
+ </tileset>
+ <tileset firstgid="337" name="cartoon_tiles_right" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="3">
+  <image source="cartoon_tiles_right.png" width="54" height="1024"/>
+ </tileset>
+ <tileset firstgid="505" name="cartoon_tiles_top" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="56">
+  <image source="cartoon_tiles_top.png" width="1024" height="54"/>
+ </tileset>
+ <layer name="regions" width="25" height="15">
+  <data encoding="base64" compression="zlib">
+   eJyrZWBgqB3Fo3gUj+JRPKwwAASytxw=
+  </data>
+ </layer>
+ <layer name="input_background" width="25" height="15">
+  <data encoding="base64" compression="zlib">
+   eJyrZWBgqB3Fo3gUj+JRPKwwAASytxw=
+  </data>
+ </layer>
+ <layer name="output_background" width="25" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxrZGBgOM3IwFDLAMF1QFzPgOCTgonVO2rH4LajAU0eH38w++MmECsy0daORgbU/DNU45wadqCHNS3sQA9ratiBnk4I+aMBzRx8fJheWDqBmU0Lf6CnRwCkQ7ho
+  </data>
+ </layer>
+ <layer name="input_graphic_back" width="25" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMNwAAAXcAAE=
+  </data>
+ </layer>
+ <layer name="output_graphic_back" width="25" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAfMCZRnFJ9o2AUDCUwmj9GATUBAPNnAZk=
+  </data>
+ </layer>
+</map>
