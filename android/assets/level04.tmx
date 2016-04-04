@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="150" tilewidth="16" tileheight="16" nextobjectid="2">
+ <tileset firstgid="1" name="cartoon_tiles" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="56">
+  <image source="cartoon_tiles.png" width="1024" height="54"/>
+ </tileset>
+ <tileset firstgid="169" name="cartoon_tiles_left" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="3">
+  <image source="cartoon_tiles_left.png" width="54" height="1024"/>
+ </tileset>
+ <tileset firstgid="337" name="cartoon_tiles_right" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="3">
+  <image source="cartoon_tiles_right.png" width="54" height="1024"/>
+ </tileset>
+ <tileset firstgid="505" name="cartoon_tiles_top" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="56">
+  <image source="cartoon_tiles_top.png" width="1024" height="54"/>
+ </tileset>
+ <layer name="background" width="25" height="150">
+  <data encoding="base64" compression="zlib">
+   eJztlEEKwkAQBFd/4kPVyft8gb8xIEHsgVEhGTtQhz00TVJ0XGsaY9wOY5zH81zmcx2v/Mv59lkY3oyQvsrOO+7zOR23ZUzj/f+z1998DYZ+6y0Y+q3XYOg9+bQj5D1VXp5d7sny7i126H3Uu7nXewVjPUZIX2XnHbi9l4Hbc8btMJwYIX2VnXfg9l4Gbs8Zt8NwYoT0VXbegdt7Gbg9Z9wOw4kR0lfZeQdu72Xg9pxxOwwnRkhfZecduL2Xgdtzxu0wnBghfZWdd+D2XgZuzxm3w3BihPRVdt6B23sZuD1n3A7DiRHSV9l5B27vZeD2nHE7DCdGSF9l5x24vZeB23P+p9sfQsM0cA==
+  </data>
+ </layer>
+ <layer name="graphic_back" width="25" height="150">
+  <data encoding="base64" compression="zlib">
+   eJzt1MEJACEAA0F7sv/ergYROV1mnoF8dwzgBnNx3/0BcJ62A/RoO0CPtgP0aDtAj7YD9Gg7QI+2A/RoO/AKvYJ/fILUB/k=
+  </data>
+ </layer>
+ <objectgroup name="player">
+  <object id="1" x="160" y="192" width="32" height="32"/>
+ </objectgroup>
+</map>

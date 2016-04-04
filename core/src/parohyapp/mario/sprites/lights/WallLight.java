@@ -14,7 +14,7 @@ public class WallLight extends parohyapp.mario.sprites.lights.tools.LightSource 
 
     public WallLight(World world, Rectangle bounds, PlayScreen screen) {
         super(world, bounds, screen);
-        setLightSource(parohyapp.mario.sprites.lights.tools.LightSource.LightUtil.createPointLight(screen.getWorldManager().getRayHandler(),30,Color.WHITE,60,b2Body));
+        setLightSource(parohyapp.mario.sprites.lights.tools.LightSource.LightUtil.createPointLight(screen.getWorldManager().getRayHandler(),10,Color.WHITE,40,b2Body));
         setCategoryFilter(Entity.LSOURCE_BIT);
         setLightMaskFilter((short) (Entity.DEFAULT_BIT | Entity.CLIMBER_BIT | Entity.CREEP_BIT));
         fixture.setSensor(true);

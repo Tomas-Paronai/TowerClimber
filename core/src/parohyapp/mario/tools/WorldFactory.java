@@ -19,6 +19,7 @@ import parohyapp.mario.screens.PlayScreen;
 import parohyapp.mario.sprites.animated.Climber;
 import parohyapp.mario.sprites.lights.RoofLight;
 import parohyapp.mario.sprites.lights.SignalLight;
+import parohyapp.mario.sprites.lights.WallLight;
 import parohyapp.mario.sprites.standing.door.Door;
 import parohyapp.mario.sprites.standing.door.DoorZ;
 import parohyapp.mario.sprites.standing.gems.Diamond;
@@ -183,7 +184,7 @@ public class WorldFactory {
 
                 }
                 else{
-//                    screen.getLights().add(new WallLight(world,rect,screen));
+                    worldManager.getLights().add(new WallLight(world,rect,screen));
                 }
 
             }
