@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Array;
 
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.screens.PlayScreen;
+import parohyapp.mario.sprites.animated.Creep;
 import parohyapp.mario.sprites.animated.State;
 
 /**
@@ -27,6 +28,8 @@ public abstract class InteractiveSpriteEntity extends Entity{
     protected State currentState;
     protected State previousState;
     protected boolean facingRight;
+
+    private boolean onGround;
 
     public InteractiveSpriteEntity(World world, Rectangle bounds, PlayScreen screen){
         super(world,bounds,screen.getWorldManager());
@@ -75,6 +78,10 @@ public abstract class InteractiveSpriteEntity extends Entity{
     }
 
     public void setDying(boolean die){
+        if(this instanceof Creep){
+            Gdx.app.log(TAG,"lalaa");
+        }
+        setCategoryFilter(Entity.DISPOSE_BIT);
         dying = die;
     }
 
@@ -87,9 +94,11 @@ public abstract class InteractiveSpriteEntity extends Entity{
             return State.DYING;
         }
         else if(b2Body.getLinearVelocity().y > 0){
+            setOnGround(false);
             return State.JUMPING;
         }
         else if(b2Body.getLinearVelocity().y < 0){
+            setOnGround(false);
             return  State.FALLING;
         }
         else if(b2Body.getLinearVelocity().x != 0){
@@ -104,5 +113,13 @@ public abstract class InteractiveSpriteEntity extends Entity{
     public void setRegion(TextureRegion tmpTexture) {
         flippingFrame(tmpTexture);
         super.setRegion(tmpTexture);
+    }
+
+    public boolean isOnGround() {
+        return onGround;
+    }
+
+    public void setOnGround(boolean onGround) {
+        this.onGround = onGround;
     }
 }

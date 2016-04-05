@@ -1,5 +1,6 @@
 package parohyapp.mario.tools;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -18,27 +19,78 @@ import parohyapp.mario.sprites.standing.Ground;
 public class WorldContactListener implements ContactListener{
     private static final String TAG = "WorldContactListener";
 
+    private WorldManager worldManager;
+
+    public WorldContactListener(WorldManager manager){
+        worldManager = manager;
+    }
+
     @Override
     public void beginContact(Contact contact) {
         Fixture A = contact.getFixtureA();
         Fixture B = contact.getFixtureB();
-        if(A.getUserData() instanceof Entity && B.getUserData() instanceof Entity){
+
+        if(A.getUserData() instanceof Climber || B.getUserData() instanceof Climber){
+            Fixture player = A.getUserData() instanceof Climber ? A : B;
+            Fixture object = A == player ? B : A;
+
+            if(object.getUserData() instanceof InteractiveSpriteEntity && !(object.getUserData() instanceof Creep)){
+                ((InteractiveSpriteEntity)object.getUserData()).onColide();
+            }
+        }
+
+        if((A.getUserData() instanceof String && A.getUserData().equals("foot")) || (B.getUserData() instanceof String && B.getUserData().equals("foot"))){
+            Fixture foot = A.getUserData() instanceof String ? A : B;
+            Fixture object = A == foot ? B : A;
+
+            //TODO creep touch from above kills creep (it takes life anyway) !
+            /*if(object.getUserData() instanceof Creep && !((Creep)object.getUserData()).isDying()){
+                worldManager.getClimber().jump();
+                ((Creep)object.getUserData()).setDying(true);
+            }*/
+
+            if(object.getUserData() instanceof Ground || object.getUserData() instanceof Creep){
+                worldManager.getClimber().setOnGround(true);
+            }
+        }
+
+        else if(A.getUserData() instanceof Creep || B.getUserData() instanceof Creep){
+            Fixture creep = A.getUserData() instanceof Creep ? A : B;
+            Fixture object = A == creep ? B : A;
+
+            if(!((Creep)creep.getUserData()).isDying()){
+                if(object.getUserData() instanceof String && ((String)object.getUserData()).equals("mark")){
+                    ((Creep)creep.getUserData()).onColide();
+                }
+
+                if(object.getUserData() instanceof Climber && !((Creep)creep.getUserData()).isDying()){
+                    Gdx.app.log(TAG,"taking life");
+                    worldManager.getClimber().onColide();
+                }
+            }
+
+        }
+        /*if((A.getUserData() instanceof String && A.getUserData().equals("foot")) || (B.getUserData() instanceof String && B.getUserData().equals("foot"))){
             //Gdx.app.log(TAG,"A: "+((Entity)A.getUserData()).getEntX()+" "+((Entity)A.getUserData()).getEntY());
             //Gdx.app.log(TAG,"B: "+((Entity)B.getUserData()).getEntX()+" "+((Entity)B.getUserData()).getEntY());
 
-            /*if(A.getUserData() instanceof SignalLight || B.getUserData() instanceof SignalLight){
-                Fixture light = A.getUserData() instanceof SignalLight ? A : B;
-                Fixture object = A == light ? B : A;
-                if(object.getUserData() instanceof Door){
-                    Gdx.app.log(TAG,"#####");
-                }
+            Fixture playerFoot = A.getUserData() instanceof String ? A : B;
+            Fixture object = A == playerFoot ? B : A;
 
-            }*/
+            if(object.getUserData() instanceof Ground){
+                worldManager.getClimber().setOnGround(true);
+            }
+            else if(object.getUserData() instanceof Creep){
+                worldManager.getClimber().jump();
+                ((Creep)object.getUserData()).setDying(true);
+
+                Gdx.app.log(TAG, "AT FOOT-> A: " + A.getUserData() + " B: " + B.getUserData());
+            }
         }
 
 
 
-        if(A.getUserData() instanceof Climber || B.getUserData() instanceof Climber){
+        else if(A.getUserData() instanceof Climber || B.getUserData() instanceof Climber){
             Fixture player = A.getUserData() instanceof Climber ? A : B;
             Fixture object = A == player ? B : A;
 
@@ -47,10 +99,6 @@ public class WorldContactListener implements ContactListener{
                 //Gdx.app.log(TAG, "A: " + A.getUserData() + " B: " + B.getUserData());
             }
 
-            else if(object.getUserData() instanceof Creep){
-                ((Climber)player.getUserData()).onColide();
-                //((Creep)object.getUserData()).setDying(true);
-            }
         }
 
         else if(A.getUserData() instanceof Creep || B.getUserData() instanceof Creep){
@@ -60,13 +108,18 @@ public class WorldContactListener implements ContactListener{
             if(object.getUserData() instanceof String && ((String)object.getUserData()).equals("mark")){
                 ((Creep)creep.getUserData()).onColide();
             }
+            else if(object.getUserData() instanceof Climber){
+                ((Climber)object.getUserData()).onColide();
 
-        }
+                Gdx.app.log(TAG, "AT SIDE-> A: " + A.getUserData() + " B: " + B.getUserData());
+            }
+
+        }*/
     }
 
     @Override
     public void endContact(Contact contact) {
-        Fixture A = contact.getFixtureA();
+        /*Fixture A = contact.getFixtureA();
         Fixture B = contact.getFixtureB();
         if(A.getUserData() instanceof Climber || B.getUserData() instanceof Climber){
             Fixture player = A.getUserData() instanceof Climber ? A : B;
@@ -75,7 +128,7 @@ public class WorldContactListener implements ContactListener{
             if(object.getUserData() instanceof Ground){
                 ((InteractiveSpriteEntity)object.getUserData()).onColideEnd();
             }
-        }
+        }*/
     }
 
     @Override

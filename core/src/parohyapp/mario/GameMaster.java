@@ -50,7 +50,7 @@ public class GameMaster implements Update,Disposable{
         imunityTime = 3;
 
         numberOfLevels = levels.length;
-        currentLevel = 4;
+        currentLevel = 7;
 
         mapLoader = new TmxMapLoader();
         textureAtlas = new TextureAtlas("climber.pack");
@@ -141,8 +141,12 @@ public class GameMaster implements Update,Disposable{
     public void setLives(int lives) {
         if(!imunity){
             this.lives += lives;
-            imunity = true;
+            setImunity(true);
         }
+    }
+
+    public void setImunity(boolean imunity) {
+        this.imunity = imunity;
     }
 
     public TiledMap getLevelMap(){

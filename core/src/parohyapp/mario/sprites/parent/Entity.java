@@ -2,13 +2,17 @@ package parohyapp.mario.sprites.parent;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+
+import javax.annotation.processing.Filer;
 
 import box2dLight.Light;
 import parohyapp.mario.TowerClimber;
@@ -94,13 +98,5 @@ public abstract class Entity extends Sprite implements Update{
         Filter filter = new Filter();
         filter.categoryBits = bit;
         fixture.setFilterData(filter);
-    }
-
-    public float getEntY() {
-        return b2Body.getPosition().x;
-    }
-
-    public float getEntX() {
-        return b2Body.getPosition().y;
     }
 }

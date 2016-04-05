@@ -8,7 +8,11 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Filter;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
@@ -33,12 +37,31 @@ public class Climber extends InteractiveSpriteEntity implements HandleInput{
     private Light headGlow;
     private Light torch;
 
+
     public Climber(World world, Rectangle bounds, PlayScreen screen) {
         super(world, bounds, screen);
         setCategoryFilter(CLIMBER_BIT);
         initLight();
         PolygonShape shape = (PolygonShape) fixture.getShape();
-        setPolygonBox(shape,(bounds.getWidth()-20) / 2,bounds.getHeight() / 2 );
+        setPolygonBox(shape, (bounds.getWidth() - 20) / 2, bounds.getHeight() / 2);
+
+        initFootSensor();
+    }
+
+    private void initFootSensor() {
+        EdgeShape footSensor = new EdgeShape();
+        footSensor.set(new Vector2(-2 / TowerClimber.PPM, (b2Body.getPosition().y - 22) / TowerClimber.PPM), new Vector2(2 / TowerClimber.PPM, (b2Body.getPosition().y - 22) / TowerClimber.PPM));
+
+        FixtureDef fixDef = new FixtureDef();
+        fixDef.shape = footSensor;
+        fixDef.isSensor = true;
+        Fixture footFixture = b2Body.createFixture(fixDef);
+        footFixture.setUserData("foot");
+
+        Filter filter = new Filter();
+        filter.maskBits = (short) (DEFAULT_BIT | CREEP_BIT);
+        footFixture.setFilterData(filter);
+
     }
 
     private void initLight(){
@@ -73,9 +96,8 @@ public class Climber extends InteractiveSpriteEntity implements HandleInput{
     @Override
     public void handleInput(float delta) {
         //TODO fix double jump
-        if(Gdx.input.isTouched() && currentState != State.FALLING && currentState != State.JUMPING){
-            getB2Body().applyLinearImpulse(new Vector2(0,7f),getB2Body().getWorldCenter(),true);
-            screen.getGameMaster().getAssetManager().get(Resources.A_JUMP.toString(), Sound.class).play();
+        if(Gdx.input.isTouched() && isOnGround()){
+            jump();
         }
 
         if(getB2Body().getLinearVelocity().x <= Math.abs(2)){
@@ -89,6 +111,11 @@ public class Climber extends InteractiveSpriteEntity implements HandleInput{
 
             getB2Body().applyLinearImpulse(new Vector2(speed,0),getB2Body().getWorldCenter(),true);
         }
+    }
+
+    public void jump(){
+        getB2Body().applyLinearImpulse(new Vector2(0, 7f), getB2Body().getWorldCenter(), true);
+        screen.getGameMaster().getAssetManager().get(Resources.A_JUMP.toString(), Sound.class).play();
     }
 
     @Override

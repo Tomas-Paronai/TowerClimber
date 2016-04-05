@@ -82,6 +82,7 @@ public class TestCreep extends Creep {
     public void act(float delta) {
         if(currentState == State.DYING && dieAnimation.isAnimationFinished(stateTime)){
             setVissible(false);
+            fixture.setSensor(true);
         }
     }
 }

@@ -61,7 +61,7 @@ public class WorldManager implements Disposable{
 
         new WorldFactory(this,world,map,screen);
 
-        world.setContactListener(new WorldContactListener());
+        world.setContactListener(new WorldContactListener(this));
     }
 
     public TiledMap getMap(){

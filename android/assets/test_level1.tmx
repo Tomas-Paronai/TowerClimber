@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="25" height="90" tilewidth="16" tileheight="16" nextobjectid="46">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="25" height="90" tilewidth="16" tileheight="16" nextobjectid="68">
  <properties>
   <property name="Name" value="Test 1"/>
  </properties>
@@ -8,49 +8,20 @@
  </tileset>
  <layer name="background" width="25" height="90">
   <data encoding="base64" compression="zlib">
-   eJzt0LERACAIA0DmxQV0e1nBgsLji1waijwZEauSjb0rp7k793NwcHD85ni9nfwrDg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg6OOY4L46HkMQ==
-  </data>
- </layer>
- <layer name="ground_graphics" width="25" height="90">
-  <data encoding="base64" compression="zlib">
-   eJztmMsOgjAQRRF1Lera11rQta///y1vE7upaChxiBPOSU6YTTOBuROSFgUAAADAMExkKadyJucGPRaykku5kmuDHvBO39nmnOs7WzIB/0ia/fTZtgvxTNf9SrOfPtt2IZ5hT3zD//b38E39wwz9wwyhC2PJyVjeE/IgF35hdjAU3N+BVz7do5WZ9bd7uJDBmL/KoA6Z3sid3MutQR16HGUjT7I2qA/yIm/yLq8G9fnVw3IeD/kE7FMXBg==
+   eJzt1DkOgDAMBMBwfTZ8AH6PaxpEhIuQKVbbpPDEkmspZY/UxD4iZ3Jnzs/BwcHRm+Pt25H/ioODg4ODg4ODg4ODg4ODg4ODg+N5jikyR5bIGtk6dfxlHxwcHHl9v3VfpuV+jr4PDo6MvgAAMNbd
   </data>
  </layer>
  <objectgroup name="ground">
-  <object id="1" x="0" y="1344" width="400" height="16"/>
-  <object id="5" x="0" y="1232" width="80" height="32"/>
-  <object id="6" x="224" y="1232" width="80" height="32"/>
-  <object id="7" x="320" y="1120" width="80" height="32"/>
-  <object id="9" x="144" y="1056" width="80" height="32"/>
-  <object id="10" x="0" y="976" width="80" height="32"/>
-  <object id="11" x="64" y="848" width="80" height="32"/>
-  <object id="12" x="272" y="928" width="80" height="32"/>
-  <object id="13" x="256" y="768" width="80" height="32"/>
-  <object id="14" x="48" y="704" width="80" height="32"/>
-  <object id="15" x="288" y="640" width="80" height="32"/>
-  <object id="18" x="256" y="544" width="144" height="32"/>
-  <object id="19" x="64" y="560" width="48" height="32"/>
-  <object id="20" x="0" y="432" width="80" height="32"/>
-  <object id="22" x="176" y="416" width="80" height="32"/>
-  <object id="23" x="272" y="336" width="80" height="32"/>
-  <object id="37" x="1" y="19" width="16" height="1325"/>
-  <object id="39" x="384" y="21" width="16" height="1320"/>
-  <object id="45" x="10" y="2" width="384" height="16"/>
+  <object id="53" x="0" y="1280" width="400" height="16"/>
+  <object id="54" x="0" y="912" width="16" height="368"/>
+  <object id="55" x="384" y="896" width="16" height="384"/>
+  <object id="57" x="144" y="1072" width="80" height="16"/>
+  <object id="67" x="272" y="1264" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="player">
-  <object id="26" x="110" y="1302" width="32" height="32"/>
- </objectgroup>
- <objectgroup name="diamonds">
-  <object id="32" x="194" y="372.5" width="32" height="32"/>
-  <object id="33" x="65" y="663" width="32" height="32"/>
-  <object id="34" x="296" y="883" width="32" height="32"/>
-  <object id="35" x="33" y="1188" width="32" height="32"/>
+  <object id="56" x="176" y="880" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="creep">
-  <object id="40" x="179" y="1019" width="32" height="32"/>
- </objectgroup>
- <objectgroup name="mark">
-  <object id="41" x="130" y="1040" width="16" height="16"/>
-  <object id="42" x="224" y="1040" width="16" height="16"/>
+  <object id="61" x="240" y="1248" width="32" height="32"/>
  </objectgroup>
 </map>
