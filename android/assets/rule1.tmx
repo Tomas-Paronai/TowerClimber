@@ -24,17 +24,7 @@
  </layer>
  <layer name="output_background" width="25" height="15">
   <data encoding="base64" compression="zlib">
-   eJxrZGBgOM3IwFDLAMF1QFzPgOCTgonVO2rH4LajAU0eH38w++MmECsy0daORgbU/DNU45wadqCHNS3sQA9ratiBnk4I+aMBzRx8fJheWDqBmU0Lf6CnRwCkQ7ho
-  </data>
- </layer>
- <layer name="input_graphic_back" width="25" height="15">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMNwAAAXcAAE=
-  </data>
- </layer>
- <layer name="output_graphic_back" width="25" height="15">
-  <data encoding="base64" compression="zlib">
-   eJxjYKAfMCZRnFJ9o2AUDCUwmj9GATUBAPNnAZk=
+   eJxjYICAWiiuA+J6JD4pmFi9o3YMbjsa0OTx8QezP24CsSITbe1oBOLTjEM/zqlhB3p408IO9PCmhh3o7ibkjwY0c/DxYXph7oaZSwt/oJsLAOYXt9s=
   </data>
  </layer>
 </map>

@@ -50,7 +50,7 @@ public class GameMaster implements Update,Disposable{
         imunityTime = 3;
 
         numberOfLevels = levels.length;
-        currentLevel = 2;
+        currentLevel = 4;
 
         mapLoader = new TmxMapLoader();
         textureAtlas = new TextureAtlas("climber.pack");

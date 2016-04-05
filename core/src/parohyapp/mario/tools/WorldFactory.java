@@ -16,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
 
+import box2dLight.ConeLight;
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.screens.PlayScreen;
 import parohyapp.mario.sprites.animated.Climber;
@@ -189,7 +190,16 @@ public class WorldFactory {
                     String type = (String) object.getProperties().get("type");
 
                     if(type.equals("roof")){
-                        light = new RoofLight(world,rect,screen);
+                        if(object.getProperties().containsKey("angle")){
+                            light = new RoofLight(world,rect,screen, Integer.parseInt((String) object.getProperties().get("angle")) );
+                        }
+                        else{
+                            light = new RoofLight(world,rect,screen);
+                        }
+
+                        if(object.getProperties().containsKey("dirangle")){
+                            ((ConeLight)light.getLightSource()).setConeDegree( Float.parseFloat((String) object.getProperties().get("dirangle")) );
+                        }
                     }
 
                     else if (type.equals("signal")){
