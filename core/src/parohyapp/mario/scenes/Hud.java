@@ -1,14 +1,18 @@
 package parohyapp.mario.scenes;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -37,6 +41,7 @@ public class Hud implements Disposable, Update{
 
         viewport = new FitViewport(TowerClimber.V_WIDTH,TowerClimber.V_HEIGHT,new OrthographicCamera());
         stage = new Stage(viewport,sb);
+        Gdx.input.setInputProcessor(stage);
 
         Table table = new Table();
         table.top();
@@ -51,6 +56,7 @@ public class Hud implements Disposable, Update{
         table.add(scoreLabel).expandX().padTop(10);
         table.add(livesLabel).expandX().padTop(10);
         table.add(levelNameLabel).expandX().padTop(10);
+
 
         stage.addActor(table);
     }

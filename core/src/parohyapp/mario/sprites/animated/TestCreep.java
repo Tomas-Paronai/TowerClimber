@@ -44,7 +44,6 @@ public class TestCreep extends Creep {
 
     @Override
     public void getFrame(float delta) {
-        //TODO creep animation
         super.getFrame(delta);
         TextureRegion tmpTexture;
 

@@ -2,6 +2,13 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="150" tilewidth="16" tileheight="16" nextobjectid="200">
  <tileset firstgid="1" name="cartoon_tiles" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="56">
   <image source="cartoon_tiles.png" width="1024" height="54"/>
+  <tile id="0">
+   <properties>
+    <property name="conn1" value="signal"/>
+    <property name="conn2" value="door"/>
+    <property name="type" value="lever"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="169" name="cartoon_tiles_left" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="3">
   <image source="cartoon_tiles_left.png" width="54" height="1024"/>

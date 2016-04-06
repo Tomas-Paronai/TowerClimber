@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
@@ -17,6 +18,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
+import box2dLight.ChainLight;
 import box2dLight.Light;
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.screens.PlayScreen;
@@ -35,6 +37,8 @@ public class Climber extends InteractiveSpriteEntity implements HandleInput{
     private Texture idle;
     private Texture jump;
     private Light headGlow;
+
+    private Body torchBody;
     private Light torch;
 
 
@@ -46,11 +50,12 @@ public class Climber extends InteractiveSpriteEntity implements HandleInput{
         setPolygonBox(shape, (bounds.getWidth() - 20) / 2, bounds.getHeight() / 2);
 
         initFootSensor();
+
     }
 
     private void initFootSensor() {
         EdgeShape footSensor = new EdgeShape();
-        footSensor.set(new Vector2(-2 / TowerClimber.PPM, (b2Body.getPosition().y - 22) / TowerClimber.PPM), new Vector2(2 / TowerClimber.PPM, (b2Body.getPosition().y - 22) / TowerClimber.PPM));
+        footSensor.set(new Vector2(-2 / TowerClimber.PPM, (-bounds.height/2) / TowerClimber.PPM), new Vector2(2 / TowerClimber.PPM, (-bounds.height/2) / TowerClimber.PPM));
 
         FixtureDef fixDef = new FixtureDef();
         fixDef.shape = footSensor;
@@ -70,8 +75,27 @@ public class Climber extends InteractiveSpriteEntity implements HandleInput{
         filter.maskBits = (short) (DEFAULT_BIT | CREEP_BIT);
         headGlow.setContactFilter(filter);
 
+
+        //torch = LightSource.LightUtil.createConeLight(screen.getWorldManager().getRayHandler(),30,Color.WHITE, 150, 0, 20, b2Body);
+        //initTorchLight();
+    }
+
+    private void initTorchLight(){
         //TODO set up torch
-        //torch = LightSource.LightUtil.createConeLight(screen.getRayHandler(),30,Color.WHITE, 150, 0, 20, b2Body);
+        BodyDef bDef = new BodyDef();
+        FixtureDef fixDef = new FixtureDef();
+        PolygonShape pShape = new PolygonShape();
+
+        bDef.type = BodyDef.BodyType.DynamicBody;
+        bDef.position.set((bounds.getX() + bounds.getWidth() / 2) / TowerClimber.PPM, (bounds.getY() + bounds.getHeight() / 2) / TowerClimber.PPM);
+        torchBody = world.createBody(bDef);
+
+        //(bounds.getWidth() - 20) / 2, bounds.getHeight() / 2
+        pShape.setAsBox((bounds.getWidth() - 20) / TowerClimber.PPM, (bounds.getHeight() / 2) / TowerClimber.PPM);
+        fixDef.shape = pShape;
+        torchBody.createFixture(fixDef).setFilterData(fixture.getFilterData());
+
+        torch = LightSource.LightUtil.createConeLight(screen.getWorldManager().getRayHandler(),30,Color.WHITE, 150, 0, 20, torchBody);
     }
 
     @Override
@@ -95,7 +119,6 @@ public class Climber extends InteractiveSpriteEntity implements HandleInput{
 
     @Override
     public void handleInput(float delta) {
-        //TODO fix double jump
         if(Gdx.input.isTouched() && isOnGround()){
             jump();
         }
@@ -110,11 +133,13 @@ public class Climber extends InteractiveSpriteEntity implements HandleInput{
             }
 
             getB2Body().applyLinearImpulse(new Vector2(speed,0),getB2Body().getWorldCenter(),true);
+            torchBody.applyLinearImpulse(new Vector2(speed,0),getB2Body().getWorldCenter(),true);
         }
     }
 
     public void jump(){
         getB2Body().applyLinearImpulse(new Vector2(0, 7f), getB2Body().getWorldCenter(), true);
+        torchBody.applyLinearImpulse(new Vector2(0, 7f), getB2Body().getWorldCenter(), true);
         screen.getGameMaster().getAssetManager().get(Resources.A_JUMP.toString(), Sound.class).play();
     }
 

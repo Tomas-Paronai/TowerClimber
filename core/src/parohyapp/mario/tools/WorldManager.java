@@ -51,7 +51,7 @@ public class WorldManager implements Disposable{
         world = new World(new Vector2(0,-15),true);
 
         rayHandler = new RayHandler(world);
-        rayHandler.setAmbientLight(1f);
+        rayHandler.setAmbientLight(0.9f);
 
         b2dr = new Box2DDebugRenderer();
 

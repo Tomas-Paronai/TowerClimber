@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="150" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="cartoon_tiles" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="56">
+  <image source="cartoon_tiles.png" width="1024" height="54"/>
+ </tileset>
+ <tileset firstgid="169" name="cartoon_tiles_left" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="3">
+  <image source="cartoon_tiles_left.png" width="54" height="1024"/>
+ </tileset>
+ <tileset firstgid="337" name="cartoon_tiles_right" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="3">
+  <image source="cartoon_tiles_right.png" width="54" height="1024"/>
+ </tileset>
+ <tileset firstgid="505" name="cartoon_tiles_top" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="56">
+  <image source="cartoon_tiles_top.png" width="1024" height="54"/>
+ </tileset>
+ <tileset firstgid="673" name="sky" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="136" columns="17">
+  <image source="sky.jpg" width="318" height="159"/>
+ </tileset>
+ <layer name="background" width="25" height="150">
+  <data encoding="base64" compression="zlib">
+   eJztlEEOgkAQBNGf+FB0eJ8v8DdyITE9ycBhGZukDntoO1A0kpqnaZp/znM9L/nt6Dl6LQxvRkhfZecdn/U87ucylvW8b9f/z0cw9H2fwdD3PYKhz723I+Q+Vd6u3Z57u+8ZO/a+x6t+VzDGMUL6KjvvwO29DNyeM26H4cQI6avsvAO39zJwe864HYYTI6SvsvMO3N7LwO0543YYToyQvsrOO3B7LwO354zbYTgxQvoqO+/A7b0M3J4zbofhxAjpq+y8A7f3MnB7zrgdhhMjpK+y8w7c3svA7TnjdhhOjJC+ys47cHsvA7fnjNthODFC+io778DtvQzcnvM/3f4FSEM4sg==
+  </data>
+ </layer>
+ <layer name="graphic_back" width="25" height="150">
+  <data encoding="base64" compression="zlib">
+   eJzt00sKwkAUBMC4FlfBI/k5sofyEGbh24QwjpABbaqhISRMChJ6mkREJC3Pwe9/HBgMBoPBYDAYDAaDwWAwGAwG47eNedWetM5sGZel16W393VPWmcYY4z1f507znxr1P174xljf+PTf90y9tr5v32rdMPOcw07Z1TsPNewc0bFznMNO2dU7DzXsHNGxc5zDTtnVOw817DzfOM8je8xpCft7gsrr8v7
+  </data>
+ </layer>
+ <layer name="graphic_front" width="25" height="150">
+  <data encoding="base64" compression="zlib">
+   eJztwYEAAAAAw6D5Ux/hAlUBAAAAAAAAAAAAAAAAAMA3OpgAAQ==
+  </data>
+ </layer>
+ <layer name="detail" width="25" height="150">
+  <data encoding="base64" compression="zlib">
+   eJzt00ENADAMxLCWP6OhG4ipWnWyEeSTKgAAAAAAAABenf5dAEzzOeTzOeTzOeTzOeTzOeTzOcB+FywcBR4=
+  </data>
+ </layer>
+</map>

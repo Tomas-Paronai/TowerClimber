@@ -30,6 +30,7 @@ public abstract class InteractiveSpriteEntity extends Entity{
     protected boolean facingRight;
 
     private boolean onGround;
+    private float idleState;
 
     public InteractiveSpriteEntity(World world, Rectangle bounds, PlayScreen screen){
         super(world,bounds,screen.getWorldManager());
@@ -60,6 +61,20 @@ public abstract class InteractiveSpriteEntity extends Entity{
             tmpTexture.flip(true,false);
             facingRight = true;
         }
+    }
+
+    @Override
+    public void update(float delta) {
+        if(currentState == State.IDLE){
+            idleState += delta;
+            if(idleState >= 3){
+                setOnGround(true);
+            }
+        }
+        else{
+            idleState = 0;
+        }
+        super.update(delta);
     }
 
     @Override

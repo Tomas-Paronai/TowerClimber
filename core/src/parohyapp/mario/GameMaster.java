@@ -28,6 +28,7 @@ public class GameMaster implements Update,Disposable{
     private boolean finished;
 
     private int lives;
+    private int lastLives;
     private boolean imunity;
     private int imunityTime;
 
@@ -46,7 +47,7 @@ public class GameMaster implements Update,Disposable{
         this.screen = screen;
         score = 0;
         time = 180;
-        lives = 3;
+        lastLives = lives = 3;
         imunityTime = 3;
 
         numberOfLevels = levels.length;
@@ -141,9 +142,10 @@ public class GameMaster implements Update,Disposable{
     public void setLives(int lives) {
         if(!imunity && lives < 0){
             this.lives += lives;
+            lastLives += lives;
             setImunity(true);
         }
-        else{
+        else if(this.lives + lives == lastLives){
             this.lives += lives;
         }
     }

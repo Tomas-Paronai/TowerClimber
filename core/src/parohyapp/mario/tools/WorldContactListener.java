@@ -44,6 +44,7 @@ public class WorldContactListener implements ContactListener{
             Fixture object = A == foot ? B : A;
 
             if(object.getUserData() instanceof Ground || object.getUserData() instanceof Creep){
+                Gdx.app.log(TAG,"Touch with foot");
                 worldManager.getClimber().setOnGround(true);
             }
         }

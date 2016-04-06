@@ -55,7 +55,7 @@ public class PlayScreen implements Screen {
         worldManager.loadWorld();
 
         //map renderer
-        mapRenderer = new OrthogonalTiledMapRenderer(worldManager.getMap(), 1 / TowerClimber.PPM); //TODO
+        mapRenderer = new OrthogonalTiledMapRenderer(worldManager.getMap(), 1 / TowerClimber.PPM);
 
         hud.setName(worldManager.getMapName());
 
