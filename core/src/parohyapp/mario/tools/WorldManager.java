@@ -168,6 +168,9 @@ public class WorldManager implements Disposable{
         return rayHandler;
     }
 
+    public GameMaster getGameMaster() {
+        return gameMaster;
+    }
     @Override
     public void dispose() {
         map.dispose();
@@ -175,4 +178,6 @@ public class WorldManager implements Disposable{
         b2dr.dispose();
         rayHandler.dispose();
     }
+
+
 }

@@ -139,9 +139,12 @@ public class GameMaster implements Update,Disposable{
     }
 
     public void setLives(int lives) {
-        if(!imunity){
+        if(!imunity && lives < 0){
             this.lives += lives;
             setImunity(true);
+        }
+        else{
+            this.lives += lives;
         }
     }
 

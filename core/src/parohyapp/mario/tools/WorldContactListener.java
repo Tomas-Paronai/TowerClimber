@@ -43,14 +43,19 @@ public class WorldContactListener implements ContactListener{
             Fixture foot = A.getUserData() instanceof String ? A : B;
             Fixture object = A == foot ? B : A;
 
-            //TODO creep touch from above kills creep (it takes life anyway) !
-            /*if(object.getUserData() instanceof Creep && !((Creep)object.getUserData()).isDying()){
-                worldManager.getClimber().jump();
-                ((Creep)object.getUserData()).setDying(true);
-            }*/
-
             if(object.getUserData() instanceof Ground || object.getUserData() instanceof Creep){
                 worldManager.getClimber().setOnGround(true);
+            }
+        }
+        else if(A.getUserData() instanceof Fixture || B.getUserData() instanceof Fixture){
+            Fixture headSensor = A.getUserData() instanceof Fixture ? A : B;
+            Fixture object = A == headSensor ? B : A;
+
+            if(object.getUserData() instanceof Climber){
+                Fixture creepFix = (Fixture) headSensor.getUserData();
+                ((Creep)creepFix.getUserData()).setDying(true);
+                worldManager.getGameMaster().setLives(1); //TODO takes life on hit
+                worldManager.getGameMaster().setScore(7);
             }
         }
 
@@ -63,13 +68,13 @@ public class WorldContactListener implements ContactListener{
                     ((Creep)creep.getUserData()).onColide();
                 }
 
-                if(object.getUserData() instanceof Climber && !((Creep)creep.getUserData()).isDying()){
+                else if(object.getUserData() instanceof Climber){
                     Gdx.app.log(TAG,"taking life");
                     worldManager.getClimber().onColide();
                 }
             }
-
         }
+
         /*if((A.getUserData() instanceof String && A.getUserData().equals("foot")) || (B.getUserData() instanceof String && B.getUserData().equals("foot"))){
             //Gdx.app.log(TAG,"A: "+((Entity)A.getUserData()).getEntX()+" "+((Entity)A.getUserData()).getEntY());
             //Gdx.app.log(TAG,"B: "+((Entity)B.getUserData()).getEntX()+" "+((Entity)B.getUserData()).getEntY());

@@ -38,8 +38,8 @@ public abstract class Entity extends Sprite implements Update{
     public static short GEMSTONE_BIT = 4;
     public static short DISPOSE_BIT = 8;
     public static short CREEP_BIT = 16;
-    public static short MARK_BIT = 32;
-    public static short PLATFORM_BIT = 64;
+    public static short CREEP_HEAD_BIT = 32;
+    public static short MARK_BIT = 64;
     public static short LSOURCE_BIT = 128;
     public static short SWITCH_BIT = 256;
 
@@ -60,7 +60,7 @@ public abstract class Entity extends Sprite implements Update{
         if(this instanceof Climber){
             bDef.type = BodyDef.BodyType.DynamicBody;
             fixDef.filter.categoryBits = CLIMBER_BIT;
-            fixDef.filter.maskBits = (short) (DEFAULT_BIT | GEMSTONE_BIT | CREEP_BIT | PLATFORM_BIT | SWITCH_BIT);
+            fixDef.filter.maskBits = (short) (DEFAULT_BIT | GEMSTONE_BIT | CREEP_BIT | CREEP_HEAD_BIT | SWITCH_BIT);
         }
         else if(this instanceof Creep){
             bDef.type = BodyDef.BodyType.DynamicBody;
