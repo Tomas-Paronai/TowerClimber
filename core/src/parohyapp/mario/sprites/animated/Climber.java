@@ -133,13 +133,13 @@ public class Climber extends InteractiveSpriteEntity implements HandleInput{
             }
 
             getB2Body().applyLinearImpulse(new Vector2(speed,0),getB2Body().getWorldCenter(),true);
-            torchBody.applyLinearImpulse(new Vector2(speed,0),getB2Body().getWorldCenter(),true);
+            //torchBody.applyLinearImpulse(new Vector2(speed,0),getB2Body().getWorldCenter(),true);
         }
     }
 
     public void jump(){
         getB2Body().applyLinearImpulse(new Vector2(0, 7f), getB2Body().getWorldCenter(), true);
-        torchBody.applyLinearImpulse(new Vector2(0, 7f), getB2Body().getWorldCenter(), true);
+        //torchBody.applyLinearImpulse(new Vector2(0, 7f), getB2Body().getWorldCenter(), true);
         screen.getGameMaster().getAssetManager().get(Resources.A_JUMP.toString(), Sound.class).play();
     }
 

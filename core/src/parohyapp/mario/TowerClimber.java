@@ -11,6 +11,8 @@ public class TowerClimber extends Game {
 	public static final int V_WIDTH = 400;
 	public static final int V_HEIGHT = 800;
 	public static final float PPM = 100;
+	public static final float SCALED_WIDTH = V_WIDTH / PPM;
+	public static final float SCALED_HEIGHT = V_HEIGHT / PPM;
 
 	private SpriteBatch batch;
 	private ScreenManager manager;
@@ -30,4 +32,5 @@ public class TowerClimber extends Game {
 	public SpriteBatch getBatch() {
 		return batch;
 	}
+
 }

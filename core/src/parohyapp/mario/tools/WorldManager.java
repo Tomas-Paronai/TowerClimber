@@ -2,6 +2,7 @@ package parohyapp.mario.tools;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -39,6 +40,10 @@ public class WorldManager implements Disposable{
     private TiledMap map;
     private RayHandler rayHandler;
 
+
+    float mapWidth;
+    float mapHeight;
+
     public WorldManager(TowerClimber game, GameMaster gameMaster, PlayScreen screen){
         this.game = game;
         this.gameMaster = gameMaster;
@@ -47,6 +52,7 @@ public class WorldManager implements Disposable{
 
     public void loadWorld() {
         map = gameMaster.getLevelMap();
+        setMapBounds();
 
         world = new World(new Vector2(0,-15),true);
 
@@ -62,6 +68,17 @@ public class WorldManager implements Disposable{
         new WorldFactory(this,world,map,screen);
 
         world.setContactListener(new WorldContactListener(this));
+    }
+
+    private void setMapBounds(){
+        MapProperties prop = map.getProperties();
+        int width = prop.get("width", Integer.class);
+        int height = prop.get("height", Integer.class);
+        int tilePixelWidth = prop.get("tilewidth", Integer.class);
+        int tilePixelHeight = prop.get("tileheight", Integer.class);
+
+        mapWidth = (width * tilePixelWidth) / TowerClimber.PPM;
+        mapHeight = (height * tilePixelHeight) / TowerClimber.PPM;
     }
 
     public TiledMap getMap(){
@@ -171,6 +188,15 @@ public class WorldManager implements Disposable{
     public GameMaster getGameMaster() {
         return gameMaster;
     }
+
+    public float getMapWidth() {
+        return mapWidth;
+    }
+
+    public float getMapHeight() {
+        return mapHeight;
+    }
+
     @Override
     public void dispose() {
         map.dispose();

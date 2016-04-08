@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -40,7 +41,7 @@ public class PlayScreen implements Screen {
         this.game = game;
         gameMaster = new GameMaster(this);
         gameCam = new OrthographicCamera();
-        gamePort = new FitViewport(TowerClimber.V_WIDTH / TowerClimber.PPM,TowerClimber.V_HEIGHT / TowerClimber.PPM,gameCam);
+        gamePort = new FitViewport(TowerClimber.SCALED_WIDTH,TowerClimber.SCALED_HEIGHT,gameCam);
 
 
         //hud related
@@ -72,13 +73,13 @@ public class PlayScreen implements Screen {
         worldManager.update(delta);
         gameMaster.update(delta);
 
-        gameCam.position.y = worldManager.getClimber().getB2Body().getPosition().y + 3.5f;
-
         hud.setWorldTimer(gameMaster.getTime());
         hud.setScore(gameMaster.getScore());
         hud.setLives(gameMaster.getLives());
 
+        moveCamera();
         gameCam.update();
+
         mapRenderer.setView(gameCam);
     }
 
@@ -101,6 +102,13 @@ public class PlayScreen implements Screen {
         //render HUD
         game.getBatch().setProjectionMatrix(hud.getStage().getCamera().combined);
         hud.getStage().draw();
+    }
+
+    private void moveCamera(){
+        gameCam.position.x = worldManager.getClimber().getB2Body().getPosition().x;
+        gameCam.position.y = worldManager.getClimber().getB2Body().getPosition().y + 1.5f;
+        gameCam.position.x = MathUtils.clamp(gameCam.position.x, gameCam.viewportWidth * .5f, worldManager.getMapWidth() - gameCam.viewportWidth * .5f);
+        gameCam.position.y = MathUtils.clamp(gameCam.position.y, gameCam.viewportHeight * .5f, worldManager.getMapHeight() - gameCam.viewportHeight * .5f);
     }
 
     @Override
