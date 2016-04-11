@@ -23,6 +23,7 @@ public class PlayScreen implements Screen {
 
     //main variables
     private TowerClimber game;
+    private ScreenManager manager;
     private GameMaster gameMaster;
     private WorldManager worldManager;
     private OrthographicCamera gameCam;
@@ -35,8 +36,9 @@ public class PlayScreen implements Screen {
     private OrthogonalTiledMapRenderer mapRenderer;
     private Name lights;
 
-    public PlayScreen(TowerClimber game){
+    public PlayScreen(TowerClimber game, ScreenManager manager){
         //main variables
+        this.manager = manager;
         this.game = game;
         gameMaster = new GameMaster(this);
         gameCam = new OrthographicCamera();

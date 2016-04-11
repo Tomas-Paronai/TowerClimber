@@ -220,6 +220,7 @@
   </object>
   <object id="165" x="192" y="1136" width="16" height="16">
    <properties>
+    <property name="lock" value="false"/>
     <property name="type" value="signal"/>
    </properties>
   </object>
