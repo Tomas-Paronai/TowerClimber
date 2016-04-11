@@ -207,7 +207,12 @@ public class WorldFactory {
 
                         if(object.getProperties().containsKey("lock")){
                             Gdx.app.log(TAG,"Creating signal light with status");
-                            light = new OneWaySignalLight(world,rect,screen,LightStatus.LOCK);
+                            if(object.getProperties().get("lock").equals("false")){
+                                light = new OneWaySignalLight(world,rect,screen,LightStatus.OPEN);
+                            }
+                            else{
+                                light = new OneWaySignalLight(world,rect,screen,LightStatus.LOCK);
+                            }
                         }
                         else{
                             Gdx.app.log(TAG,"Creating signal light");
