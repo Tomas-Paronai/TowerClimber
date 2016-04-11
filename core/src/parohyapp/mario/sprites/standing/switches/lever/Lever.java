@@ -7,15 +7,11 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-import java.util.ArrayList;
-
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.screens.PlayScreen;
-import parohyapp.mario.sprites.Switchable;
 import parohyapp.mario.sprites.standing.switches.Switch;
-import parohyapp.mario.sprites.standing.switches.SwitchableType;
-import parohyapp.mario.tools.Resources;
-import parohyapp.mario.tools.ResourcesUtil;
+import parohyapp.mario.tools.data.resources.Resources;
+import parohyapp.mario.tools.data.resources.ResourcesUtil;
 
 /**
  * Created by tomas on 4/3/2016.

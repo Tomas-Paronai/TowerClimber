@@ -5,15 +5,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 
-import java.util.ArrayList;
-
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.screens.PlayScreen;
 import parohyapp.mario.sprites.Switchable;
 import parohyapp.mario.sprites.parent.InteractiveSpriteEntity;
-import parohyapp.mario.sprites.standing.switches.Switch;
 import parohyapp.mario.sprites.standing.switches.SwitchableType;
-import parohyapp.mario.tools.Resources;
+import parohyapp.mario.tools.data.resources.Resources;
 
 /**
  * Created by tomas on 4/2/2016.
@@ -54,6 +51,7 @@ public class Door extends InteractiveSpriteEntity implements Switchable{
 
     @Override
     public void onColide() {
+        Gdx.app.log(TAG,"Finished: "+screen.getGameMaster().isFinished()+" Exit: "+isExit()+" Open: "+isOpen());
         if(screen.getGameMaster().isFinished() && isExit() && isOpen()){
             screen.getGameMaster().nextLevel();
         }

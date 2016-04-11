@@ -9,8 +9,8 @@ import com.badlogic.gdx.utils.Array;
 
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.screens.PlayScreen;
-import parohyapp.mario.tools.Resources;
-import parohyapp.mario.tools.ResourcesUtil;
+import parohyapp.mario.tools.data.resources.Resources;
+import parohyapp.mario.tools.data.resources.ResourcesUtil;
 
 /**
  * Created by tomas on 3/30/2016.

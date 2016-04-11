@@ -18,14 +18,13 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-import box2dLight.ChainLight;
 import box2dLight.Light;
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.screens.PlayScreen;
 import parohyapp.mario.sprites.lights.tools.LightSource;
 import parohyapp.mario.sprites.parent.*;
-import parohyapp.mario.tools.Resources;
-import parohyapp.mario.tools.ResourcesUtil;
+import parohyapp.mario.tools.data.resources.Resources;
+import parohyapp.mario.tools.data.resources.ResourcesUtil;
 
 /**
  * Created by tomas on 3/24/2016.
@@ -132,15 +131,18 @@ public class Climber extends InteractiveSpriteEntity implements HandleInput{
                 speed = 2f;
             }
 
-            getB2Body().applyLinearImpulse(new Vector2(speed,0),getB2Body().getWorldCenter(),true);
-            //torchBody.applyLinearImpulse(new Vector2(speed,0),getB2Body().getWorldCenter(),true);
+            setVectorImpulse(speed,0);
         }
     }
 
     public void jump(){
-        getB2Body().applyLinearImpulse(new Vector2(0, 7f), getB2Body().getWorldCenter(), true);
-        //torchBody.applyLinearImpulse(new Vector2(0, 7f), getB2Body().getWorldCenter(), true);
+        setVectorImpulse(0,7f);
         screen.getGameMaster().getAssetManager().get(Resources.A_JUMP.toString(), Sound.class).play();
+    }
+
+    private void setVectorImpulse(float x, float y){
+        b2Body.applyLinearImpulse(new Vector2(x,y),b2Body.getWorldCenter(),true);
+        //torchBody.applyLinearImpulse(new Vector2(x,y),torchBody.getWorldCenter(),true);
     }
 
     @Override

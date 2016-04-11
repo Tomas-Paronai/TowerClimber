@@ -55,12 +55,28 @@ public class WorldFactory {
     public final static String L_SWITCH = "switch";
     public final static String L_MISC = "misc";
 
-
+    private WorldManager worldManager;
+    private World world;
+    private TiledMap map;
+    private PlayScreen screen;
 
     public WorldFactory(WorldManager worldManager, World world, TiledMap map, PlayScreen screen){
+        this.worldManager = worldManager;
+        this.world = world;
+        this.map = map;
+        this.screen = screen;
+
+        createGround();
+        createPlayer();
+        createGems();
+        createCreeps();
+        createDoors();
+        createLights();
+        createSwitches();
+        createMisc();
 
         //ground
-        if(map.getLayers().get(L_GROUND) != null){
+        /*if(map.getLayers().get(L_GROUND) != null){
             MapLayer layer = map.getLayers().get(L_GROUND);
             for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
@@ -131,7 +147,12 @@ public class WorldFactory {
                     door.setExit(true);
                 }
                 if(object.getProperties().containsKey("lock")){
-                    door.setOpen(false);
+                    if(object.getProperties().get("lock").equals("false")){
+                        door.setOpen(true);
+                    }
+                    else{
+                        door.setOpen(false);
+                    }
                 }
 
                 if(object.getProperties().containsKey("connect")){
@@ -275,10 +296,252 @@ public class WorldFactory {
 
                 new NonInteractiveEntity(world,rect);
             }
+        }*/
+
+
+
+    }
+
+    private void createGround(){
+        if(map.getLayers().get(L_GROUND) != null){
+            MapLayer layer = map.getLayers().get(L_GROUND);
+            for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+                if (object.getProperties().containsKey("platform")) {
+                    worldManager.getPlatforms().add(new Ground(world, rect, screen, true));
+                } else {
+                    new Ground(world, rect, screen);
+                }
+            }
+        }
+    }
+
+    private void createPlayer(){
+        if(map.getLayers().get(L_PLAYER) != null){
+            MapLayer layer = map.getLayers().get(L_PLAYER);
+            for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+                worldManager.setClimber(new Climber(world, rect, screen));
+                break;
+            }
+        }
+    }
+
+    private void createGems(){
+        //diamonds
+        if(map.getLayers().get(L_DIAMONDS) != null){
+            MapLayer layer = map.getLayers().get(L_DIAMONDS);
+            for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+                worldManager.getEntities().add(new Diamond(world, rect, screen));
+                screen.getGameMaster().setNumberOfGemstones(1);
+            }
+        }
+        //ruby
+        if(map.getLayers().get(L_RUBY) != null){
+            MapLayer layer = map.getLayers().get(L_RUBY);
+            for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+                worldManager.getEntities().add(new Ruby(world, rect, screen));
+            }
+        }
+    }
+
+    private void createCreeps(){
+        if(map.getLayers().get(L_CREEP) != null){
+            MapLayer layer = map.getLayers().get(L_CREEP);
+            for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+                worldManager.getEntities().add(new TestCreep(world, rect, screen));
+            }
         }
 
+        //marks
+        if(map.getLayers().get(L_MARK) != null){
+            MapLayer layer = map.getLayers().get(L_MARK);
+            for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
+                BodyDef bDef = new BodyDef();
+                FixtureDef fixDef = new FixtureDef();
+                PolygonShape pShape = new PolygonShape();
+                Fixture fixture;
+                Body body;
 
+                fixDef.filter.categoryBits = Entity.MARK_BIT;
+                fixDef.filter.maskBits = (Entity.CREEP_BIT);
+                bDef.type = BodyDef.BodyType.StaticBody;
+                bDef.position.set((rect.getX() + rect.getWidth() / 2) / TowerClimber.PPM, (rect.getY() + rect.getHeight() / 2) / TowerClimber.PPM);
+                body = world.createBody(bDef);
+
+                pShape.setAsBox(rect.getWidth() / 2 / TowerClimber.PPM, rect.getHeight() / 2 / TowerClimber.PPM);
+                fixDef.shape = pShape;
+                fixture = body.createFixture(fixDef);
+                fixture.setUserData("mark");
+            }
+        }
+    }
+    private void createDoors(){
+        if(map.getLayers().get(L_DOOR) != null){
+            MapLayer layer = map.getLayers().get(L_DOOR);
+            for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+                Door door;
+                if(object.getProperties().containsKey("doorz")){
+                    String property = (String) object.getProperties().get("doorz");
+
+                    //proper door texture selection
+                    if(property.equals("back")){
+                        door = new Door(world, rect, screen, DoorZ.BACK);
+                    }
+                    else if(property.equals("bg")){
+                        door = new Door(world, rect, screen, DoorZ.BG);
+                    }
+                    else{
+                        door = new Door(world, rect, screen, DoorZ.FRONT);
+                    }
+
+                }
+                else{
+                    door = new Door(world, rect, screen, DoorZ.FRONT);
+                }
+
+                //set exit door
+                if(object.getProperties().containsKey("exit")){
+                    door.setExit(true);
+                }
+
+                //door locked or unlocked
+                if(object.getProperties().containsKey("lock")){
+                    if(object.getProperties().get("lock").equals("false")){
+                        door.setOpen(true);
+                    }
+                    else{
+                        door.setOpen(false);
+                    }
+                }
+
+                //if door can be connected to switch
+                if(object.getProperties().containsKey("connect")){
+                    door.setConnectable(true);
+                }
+
+                worldManager.getEntities().add(door);
+            }
+        }
+    }
+
+    private void createLights(){
+        if(map.getLayers().get(L_LIGHT) != null){
+            MapLayer layer = map.getLayers().get(L_LIGHT);
+            for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+                LightSource light;
+                if(object.getProperties().containsKey("type")){
+                    String type = (String) object.getProperties().get("type");
+
+                    //roof light
+                    if(type.equals("roof")){
+                        //angle of pointing
+                        if(object.getProperties().containsKey("angle")){
+                            light = new RoofLight(world,rect,screen, Integer.parseInt((String) object.getProperties().get("angle")) );
+                        }
+                        else{
+                            light = new RoofLight(world,rect,screen);
+                        }
+
+                        //distance of light rays
+                        if(object.getProperties().containsKey("power")){
+                            light.getLightSource().setDistance(Integer.parseInt((String) object.getProperties().get("power")));
+                        }
+
+                        //angle of light
+                        if(object.getProperties().containsKey("dirangle")){
+                            ((ConeLight)light.getLightSource()).setConeDegree( Float.parseFloat((String) object.getProperties().get("dirangle")) );
+                        }
+                    }
+
+                    //signal light
+                    else if (type.equals("signal")){
+
+                        //light status: green-open, red-locked, yellow-neutral
+                        if(object.getProperties().containsKey("lock")){
+                            if(object.getProperties().get("lock").equals("false")){
+                                light = new OneWaySignalLight(world,rect,screen,LightStatus.OPEN);
+                            }
+                            else{
+                                light = new OneWaySignalLight(world,rect,screen,LightStatus.LOCK);
+                            }
+                        }
+                        else{
+                            light = new SignalLight(world,rect,screen);
+                        }
+                    }
+
+                    //default wall light
+                    else{
+                        light = new WallLight(world,rect,screen);
+                    }
+
+                }
+
+                else{
+                    light = new WallLight(world,rect,screen);
+                }
+
+                //check light connectivity
+                if(object.getProperties().containsKey("connect")){
+                    light.setConnectable(true);
+                }
+
+                worldManager.getLights().add(light);
+            }
+        }
+    }
+
+    private void createSwitches(){
+        if(map.getLayers().get(L_SWITCH) != null){
+            MapLayer layer = map.getLayers().get(L_SWITCH);
+            for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+                Switch tmpSwitch = null;
+                MapProperties objProperties = object.getProperties();
+                if(objProperties.containsKey("type")){
+                    String type = (String) objProperties.get("type");
+                    if(type.equals("lever")){
+                        tmpSwitch = new Lever(world,rect,screen);
+                    }
+                }
+                else{
+                    tmpSwitch = new Lever(world,rect,screen);
+                }
+
+                //connect listed devices as properties to this switch
+                connectDevices(object, tmpSwitch);
+
+                screen.getWorldManager().getEntities().add(tmpSwitch);
+
+            }
+        }
+    }
+
+    private void createMisc(){
+        if(map.getLayers().get(L_MISC) != null){
+            MapLayer layer = map.getLayers().get(L_MISC);
+            for(MapObject object : layer.getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+                new NonInteractiveEntity(world,rect);
+            }
+        }
     }
 
     private void connectDevices(MapObject object, Switch tmpSwitch) {
@@ -288,7 +551,6 @@ public class WorldFactory {
         while(object.getProperties().containsKey(identifier)){
             String value = (String) object.getProperties().get(identifier);
 
-            Gdx.app.log(TAG,"Adding switchable: "+value);
             if(value.equals("signal")){
                 types.add(SwitchableType.SIGNAL);
             }

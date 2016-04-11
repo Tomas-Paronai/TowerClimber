@@ -7,11 +7,12 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 import parohyapp.mario.screens.PlayScreen;
-import parohyapp.mario.tools.Resources;
-import parohyapp.mario.tools.ResourcesUtil;
+import parohyapp.mario.tools.data.resources.Resources;
+import parohyapp.mario.tools.data.resources.ResourcesUtil;
 import parohyapp.mario.tools.Update;
 
 /**
@@ -160,6 +161,7 @@ public class GameMaster implements Update,Disposable{
 
     public void setNumberOfGemstones(int numberOfDiamonds) {
         this.numberOfGemstones += numberOfDiamonds;
+        Gdx.app.log(TAG,"Left: "+numberOfGemstones);
     }
 
     public int getNumberOfGemstones() {

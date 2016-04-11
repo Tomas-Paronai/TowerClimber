@@ -11,7 +11,7 @@ import parohyapp.mario.screens.PlayScreen;
 import parohyapp.mario.sprites.lights.tools.LightSource;
 import parohyapp.mario.sprites.parent.Entity;
 import parohyapp.mario.sprites.parent.InteractiveSpriteEntity;
-import parohyapp.mario.tools.Resources;
+import parohyapp.mario.tools.data.resources.Resources;
 
 /**
  * Created by tomas on 3/25/2016.

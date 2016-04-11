@@ -14,7 +14,7 @@ import parohyapp.mario.screens.PlayScreen;
 import parohyapp.mario.sprites.Switchable;
 import parohyapp.mario.sprites.parent.Entity;
 import parohyapp.mario.sprites.standing.switches.SwitchableType;
-import parohyapp.mario.tools.ResourcesUtil;
+import parohyapp.mario.tools.data.resources.ResourcesUtil;
 
 /**
  * Created by tomas on 4/3/2016.
