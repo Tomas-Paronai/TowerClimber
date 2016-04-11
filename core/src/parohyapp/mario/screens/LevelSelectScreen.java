@@ -31,7 +31,7 @@ public class LevelSelectScreen implements Screen {
     }
 
     private void initMenu(){
-        
+
     }
 
     @Override
