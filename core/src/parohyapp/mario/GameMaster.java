@@ -39,7 +39,7 @@ public class GameMaster implements Update,Disposable{
 
     private Music music;
 
-    private String[] levels = {"level01.tmx","level02.tmx","level03.tmx","level04.tmx","level1.tmx","level2.tmx","test_level1.tmx","test_level2.tmx"};
+    private String[] levels = {"level00.tmx","level01.tmx","level02.tmx","level03.tmx","level04.tmx","level1.tmx","level2.tmx","test_level1.tmx","test_level2.tmx"};
     private int numberOfLevels;
     private int currentLevel;
 
@@ -51,7 +51,7 @@ public class GameMaster implements Update,Disposable{
         imunityTime = 3;
 
         numberOfLevels = levels.length;
-        currentLevel = 7;
+        currentLevel = 1;
 
         mapLoader = new TmxMapLoader();
         textureAtlas = new TextureAtlas("climber.pack");
