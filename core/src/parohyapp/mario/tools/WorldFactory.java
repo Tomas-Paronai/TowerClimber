@@ -197,6 +197,10 @@ public class WorldFactory {
                             light = new RoofLight(world,rect,screen);
                         }
 
+                        if(object.getProperties().containsKey("power")){
+                            light.getLightSource().setDistance(Integer.parseInt((String) object.getProperties().get("power")));
+                        }
+
                         if(object.getProperties().containsKey("dirangle")){
                             ((ConeLight)light.getLightSource()).setConeDegree( Float.parseFloat((String) object.getProperties().get("dirangle")) );
                         }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="5">
+ <tileset firstgid="1" name="cartoon_tiles" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="56">
+  <image source="cartoon_tiles.png" width="1024" height="54"/>
+ </tileset>
+ <tileset firstgid="169" name="cartoon_tiles_left" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="3">
+  <image source="cartoon_tiles_left.png" width="54" height="1024"/>
+ </tileset>
+ <tileset firstgid="337" name="cartoon_tiles_right" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="3">
+  <image source="cartoon_tiles_right.png" width="54" height="1024"/>
+ </tileset>
+ <tileset firstgid="505" name="cartoon_tiles_top" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="56">
+  <image source="cartoon_tiles_top.png" width="1024" height="54"/>
+ </tileset>
+ <layer name="background" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJyrZWBgqB3FROEWKKammY0DaM9QxKNhMxpWo3jwxCMAIOPDnQ==
+  </data>
+ </layer>
+ <layer name="graphic_back" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFQwkIo+FRMApGwSgYKAAAX0cATQ==
+  </data>
+ </layer>
+ <objectgroup name="graphic_back">
+  <object id="1" x="128" y="80" width="16" height="16"/>
+  <object id="2" x="144" y="80" width="16" height="16"/>
+  <object id="3" x="160" y="80" width="16" height="16"/>
+  <object id="4" x="176" y="80" width="16" height="16"/>
+ </objectgroup>
+</map>

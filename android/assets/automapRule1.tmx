@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="10" height="10" tilewidth="16" tileheight="16" nextobjectid="2">
+ <tileset firstgid="1" name="cartoon_tiles" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="56">
+  <image source="cartoon_tiles.png" width="1024" height="54"/>
+ </tileset>
+ <tileset firstgid="169" name="cartoon_tiles_left" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="3">
+  <image source="cartoon_tiles_left.png" width="54" height="1024"/>
+ </tileset>
+ <tileset firstgid="337" name="cartoon_tiles_right" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="3">
+  <image source="cartoon_tiles_right.png" width="54" height="1024"/>
+ </tileset>
+ <tileset firstgid="505" name="cartoon_tiles_top" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="168" columns="56">
+  <image source="cartoon_tiles_top.png" width="1024" height="54"/>
+ </tileset>
+ <layer name="regions" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYCANMCJhYtTgU0cNgM0OYsSwuY9YN9PSbwATHAAX
+  </data>
+ </layer>
+ <layer name="input_detail" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAeMKJhStVRAxBrBzHqiHUzLf0GABFQABM=
+  </data>
+ </layer>
+ <layer name="output_detail" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBjaYCIQR6GJRQCxAppYJJpYBBZ1E6HqFAnYCVNDSB05AACcRgRT
+  </data>
+ </layer>
+ <layer name="output1_detail" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYCANKABxBBBPwqMmCqoOpnYUEA8AjpYB/Q==
+  </data>
+ </layer>
+ <layer name="output2_detail" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYCANTITSinjUKELVRULxKCAeAACjngIX
+  </data>
+ </layer>
+ <layer name="output3_detail" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAPKBCQjwJiLkbC6kYBKgAAzXsApg==
+  </data>
+ </layer>
+</map>

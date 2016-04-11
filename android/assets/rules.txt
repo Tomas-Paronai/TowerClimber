@@ -1,1 +1,2 @@
-rule1.tmx
+automapRule1.tmx
+automapRule2.tmx
