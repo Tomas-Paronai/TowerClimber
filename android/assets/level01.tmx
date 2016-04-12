@@ -190,6 +190,7 @@
    <properties>
     <property name="doorz" value="back"/>
     <property name="exit" value="true"/>
+    <property name="lock" value="false"/>
    </properties>
   </object>
  </objectgroup>
