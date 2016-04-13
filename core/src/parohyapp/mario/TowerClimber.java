@@ -14,9 +14,16 @@ public class TowerClimber extends Game {
 	public static final float SCALED_WIDTH = V_WIDTH / PPM;
 	public static final float SCALED_HEIGHT = V_HEIGHT / PPM;
 
+	public static String parentDirPath;
+
 	private SpriteBatch batch;
 	private ScreenManager manager;
-	
+
+	public TowerClimber(String absolutePath) {
+		parentDirPath = absolutePath;
+	}
+
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();

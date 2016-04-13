@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 import parohyapp.mario.screens.PlayScreen;
+import parohyapp.mario.tools.data.GameProgress;
 import parohyapp.mario.tools.data.resources.Resources;
 import parohyapp.mario.tools.data.resources.ResourcesUtil;
 import parohyapp.mario.tools.Update;
@@ -44,6 +45,8 @@ public class GameMaster implements Update,Disposable{
     private int numberOfLevels;
     private int currentLevel;
 
+    private GameProgress gameProgressTracker;
+
     public GameMaster(PlayScreen screen){
         this.screen = screen;
         score = 0;
@@ -51,12 +54,14 @@ public class GameMaster implements Update,Disposable{
         lastLives = lives = 3;
         imunityTime = 3;
 
+        gameProgressTracker = new GameProgress();
         numberOfLevels = levels.length;
-        currentLevel = 1;
+        currentLevel = gameProgressTracker.getLastLevel();
 
         mapLoader = new TmxMapLoader();
         textureAtlas = new TextureAtlas("climber.pack");
         loadAssets();
+
 
     }
 
@@ -108,6 +113,8 @@ public class GameMaster implements Update,Disposable{
 
     public void nextLevel(){
         if(currentLevel + 1 <= numberOfLevels){
+            gameProgressTracker.levelPassed(getLevelMap(),currentLevel);
+
             finished = false;
             currentLevel++;
             time = 180;
