@@ -2,16 +2,17 @@ package parohyapp.mario.tools.data;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
+import org.json.JSONObject;
+
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import parohyapp.mario.TowerClimber;
+import parohylib.jsonfile.input.JSONFileReader;
+import parohylib.jsonfile.input.JSONFileReaderException;
+import parohylib.jsonfile.output.JSONFileWriter;
+import parohylib.jsonfile.output.JSONFileWriterException;
 
 /**
  * Created by tomas on 4/11/2016.
@@ -19,7 +20,7 @@ import parohyapp.mario.TowerClimber;
 public class GameProgress {
 
     private File dataFile;
-    private ArrayList<LevelDat> levelData;
+    private ArrayList<LevelDat> levelDataArray;
 
     private int lastLevel;
     private LevelDat lastLevelInfo;
@@ -33,8 +34,8 @@ public class GameProgress {
         }
     }
 
-    public ArrayList<LevelDat> getLevelData() {
-        return levelData;
+    public ArrayList<LevelDat> getLevelDataArray() {
+        return levelDataArray;
     }
 
     public void levelPassed(TiledMap map, int pos){
@@ -43,7 +44,7 @@ public class GameProgress {
             name = (String) map.getProperties().get("Name");
         }
         lastLevelInfo = new LevelDat(name,pos);
-        levelData.add(lastLevelInfo);
+        levelDataArray.add(lastLevelInfo);
         updateData();
     }
 
@@ -51,7 +52,6 @@ public class GameProgress {
         try {
 
             saveData();
-            firstStartup();
             loadData();
 
         } catch (IOException e) {
@@ -65,61 +65,45 @@ public class GameProgress {
             parentDir.mkdir();
         }
 
-        dataFile = new File(parentDir,"progress.dat");
+        dataFile = new File(parentDir,"progress.txt");
         if(!dataFile.exists()){
             dataFile.createNewFile();
         }
 
-        levelData = new ArrayList<LevelDat>();
+        levelDataArray = new ArrayList<LevelDat>();
     }
 
     public void saveData() throws IOException {
         if(dataFile != null){
-            FileOutputStream fileOutputStream = null;
-            ObjectOutputStream objectOutputStream = null;
+            /*JSONFileWriter writer = new JSONFileWriter(dataFile);
+            for(LevelDat tmpDat : levelDataArray){
+                writer.prepareJSONObject(String.valueOf(tmpDat.getPosition()),tmpDat.getName());
+            }
+
             try {
-                fileOutputStream = new FileOutputStream(dataFile);
-                objectOutputStream = new ObjectOutputStream(fileOutputStream);
-
-                dataFile.delete();
-                dataFile.createNewFile();
-
-                for(LevelDat tmpDat : levelData){
-                    objectOutputStream.writeObject(tmpDat);
-                }
-            } catch (FileNotFoundException e) {
+                writer.saveAllClear();
+            } catch (JSONFileWriterException e) {
                 e.printStackTrace();
-            }
-            finally {
-                objectOutputStream.close();
-            }
-
-
+            }*/
         }
     }
 
-    public void loadData() throws IOException {
+    public void loadData() {
 
         if(dataFile != null){
-            FileInputStream fileInputStream = new FileInputStream(dataFile);
-            ObjectInputStream objectInputStream = null;
-
+           /*JSONFileReader reader = new JSONFileReader(dataFile);
             try {
-                objectInputStream = new ObjectInputStream(fileInputStream);
-                while(true){
-                    levelData.add((LevelDat) objectInputStream.readObject());
+                for(JSONObject tmpObj : reader.getAll()){
+                    String key = tmpObj.keys().next();
+                    levelDataArray.add(new LevelDat(tmpObj.getString(key),Integer.parseInt(key)));
                 }
-            } catch (ClassNotFoundException e) {
+            } catch (JSONFileReaderException e) {
                 e.printStackTrace();
-            }
-            finally {
-                objectInputStream.close();
-            }
-
+            }*/
         }
 
-        if(levelData.size() > 0){
-            lastLevel = levelData.get(levelData.size() - 1).getPosition();
+        if(levelDataArray.size() > 0){
+            lastLevel = levelDataArray.get(levelDataArray.size() - 1).getPosition();
         }
         else{
             lastLevel = 1;
@@ -128,6 +112,9 @@ public class GameProgress {
     }
 
     public int getLastLevel() {
+        if(lastLevel <= 0){
+            return 1;
+        }
         return lastLevel;
     }
 }
