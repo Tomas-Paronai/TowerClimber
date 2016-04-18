@@ -3,8 +3,7 @@ package parohyapp.mario;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import parohyapp.mario.screens.PlayScreen;
-import parohyapp.mario.screens.ScreenManager;
+import parohyapp.mario.screens.tools.ScreenManager;
 
 public class TowerClimber extends Game {
 

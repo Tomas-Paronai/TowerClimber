@@ -1,10 +1,12 @@
-package parohyapp.mario.screens;
+package parohyapp.mario.screens.tools;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 
 import parohyapp.mario.TowerClimber;
+import parohyapp.mario.screens.LevelSelectScreen;
+import parohyapp.mario.screens.MenuScreen;
+import parohyapp.mario.screens.PlayScreen;
 
 /**
  * Created by tomas on 3/31/2016.
@@ -34,6 +36,8 @@ public class ScreenManager {
                 return new MenuScreen(this);
             case PLAY:
                 return new PlayScreen(game,this);
+            case LEVELS:
+                return new LevelSelectScreen(this);
             case EXIT:
                 Gdx.app.exit();
             default:

@@ -15,6 +15,7 @@ import parohyapp.mario.lib.jsonfile.output.*;
 /**
  * Created by tomas on 4/11/2016.
  */
+//TODO save in sqllite database progress instead
 public class GameProgress {
 
     private File dataFile;
@@ -93,6 +94,7 @@ public class GameProgress {
         if(dataFile != null){
            JSONFileReader reader = new JSONFileReader(dataFile);
             try {
+                levelDataArray.clear();
                 for(JSONObject tmpObj : reader.getAll()){
                     String key = tmpObj.keys().next();
                     levelDataArray.add(new LevelDat(tmpObj.getString(key),Integer.parseInt(key)));

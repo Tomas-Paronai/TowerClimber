@@ -22,6 +22,8 @@ import parohyapp.mario.tools.Update;
 public class GameMaster implements Update,Disposable{
     private static final String TAG = "GameMaster";
 
+    private static int levelNumberFromMenu;
+
     private int score;
     private int time;
     private float timeCount;
@@ -34,7 +36,6 @@ public class GameMaster implements Update,Disposable{
     private boolean imunity;
     private int imunityTime;
 
-    private TmxMapLoader mapLoader;
     private PlayScreen screen;
     private TextureAtlas textureAtlas;
     private AssetManager assetManager;
@@ -47,6 +48,10 @@ public class GameMaster implements Update,Disposable{
 
     private GameProgress gameProgressTracker;
 
+    public GameMaster(int levelNumber){
+        levelNumberFromMenu = levelNumber;
+    }
+
     public GameMaster(PlayScreen screen){
         this.screen = screen;
         score = 0;
@@ -56,13 +61,18 @@ public class GameMaster implements Update,Disposable{
 
         gameProgressTracker = new GameProgress();
         numberOfLevels = levels.length;
-        currentLevel = gameProgressTracker.getLastLevel();
+        if(levelNumberFromMenu != 0){
+            Gdx.app.log(TAG,"Starting with SELECTED level!");
+            currentLevel = levelNumberFromMenu;
+        }
+        else{
+            Gdx.app.log(TAG,"Starting with LAST level!");
+            currentLevel = gameProgressTracker.getLastLevel();
+        }
 
-        mapLoader = new TmxMapLoader();
-        textureAtlas = new TextureAtlas("climber.pack");
         loadAssets();
 
-
+        gameProgressTracker.levelPassed(getLevelMap(), currentLevel);
     }
 
     private void loadAssets() {
@@ -113,13 +123,12 @@ public class GameMaster implements Update,Disposable{
 
     public void nextLevel(){
         if(currentLevel + 1 <= numberOfLevels){
-            gameProgressTracker.levelPassed(getLevelMap(),currentLevel);
-
             finished = false;
             currentLevel++;
             time = 180;
             screen.loadGame();
             screen.getGameMaster().getAssetManager().get(Resources.A_LEVELUP.toString(), Sound.class).play();
+            gameProgressTracker.levelPassed(getLevelMap(),currentLevel);
         }
         else{
             //TODO no more levels
@@ -163,6 +172,7 @@ public class GameMaster implements Update,Disposable{
     }
 
     public TiledMap getLevelMap(){
+        TmxMapLoader mapLoader = new TmxMapLoader();
         return mapLoader.load(levels[currentLevel-1]);
     }
 

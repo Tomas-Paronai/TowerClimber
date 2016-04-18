@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -20,15 +19,15 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import parohyapp.mario.TowerClimber;
+import parohyapp.mario.screens.tools.MenuControl;
+import parohyapp.mario.screens.tools.ScreenManager;
+import parohyapp.mario.screens.tools.ScreenSet;
 
 /**
  * Created by tomas on 3/31/2016.
  */
-public class MenuScreen implements Screen {
+public class MenuScreen implements Screen,MenuControl {
     private static final String TAG = "MenuScreen";
-
-    private static float SCALE_W = 0.4f;
-    private static float SCALE_H = 0.1f;
 
     private ScreenManager manager;
 
@@ -37,7 +36,7 @@ public class MenuScreen implements Screen {
     private SpriteBatch batch;
 
     private Skin skin;
-    TextButton.TextButtonStyle textButtonStyle;
+    private TextButton.TextButtonStyle textButtonStyle;
 
     private TextButton playButton,exitButton;
 
@@ -51,9 +50,10 @@ public class MenuScreen implements Screen {
         initMenu();
     }
 
-    private void initSkin(){
+    @Override
+    public void initSkin(){
         skin = new Skin();
-        Pixmap pixmap = new Pixmap((int) (TowerClimber.V_WIDTH * SCALE_W), (int) (TowerClimber.V_HEIGHT * SCALE_H), Pixmap.Format.RGBA8888);
+        Pixmap pixmap = new Pixmap((int) (Gdx.app.getGraphics().getWidth() * MenuControl.SCALE_W), (int) (Gdx.app.getGraphics().getHeight() * MenuControl.SCALE_H), Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.GREEN);
         pixmap.fill();
 
@@ -73,7 +73,8 @@ public class MenuScreen implements Screen {
         skin.add("default", textButtonStyle);
     }
 
-    private void initMenu(){
+    @Override
+    public void initMenu(){
         Table table = new Table();
         table.center();
         table.setFillParent(true);
@@ -90,7 +91,8 @@ public class MenuScreen implements Screen {
         initListener();
     }
 
-    private void initListener(){
+    @Override
+    public void initListener(){
         Gdx.input.setInputProcessor(menuStage);
 
         playButton.addListener(new ChangeListener() {
@@ -108,7 +110,8 @@ public class MenuScreen implements Screen {
         });
     }
 
-    private void changeScreen(ScreenSet nextScreen){
+    @Override
+    public void changeScreen(ScreenSet nextScreen){
         manager.setCurrentScreen(nextScreen);
     }
 

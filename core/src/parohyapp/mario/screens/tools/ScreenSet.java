@@ -1,8 +1,8 @@
-package parohyapp.mario.screens;
+package parohyapp.mario.screens.tools;
 
 /**
  * Created by tomas on 4/11/2016.
  */
 public enum ScreenSet {
-    MENU,PLAY,EXIT
+    MENU,PLAY,LEVELS,EXIT
 }

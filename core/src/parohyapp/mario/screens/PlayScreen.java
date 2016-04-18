@@ -14,6 +14,8 @@ import javax.naming.Name;
 import parohyapp.mario.GameMaster;
 import parohyapp.mario.TowerClimber;
 import parohyapp.mario.scenes.Hud;
+import parohyapp.mario.screens.tools.ScreenManager;
+import parohyapp.mario.screens.tools.ScreenSet;
 import parohyapp.mario.tools.WorldManager;
 
 /**
@@ -47,7 +49,7 @@ public class PlayScreen implements Screen {
 
 
         //hud related
-        hud = new Hud(game.getBatch());
+        hud = new Hud(game.getBatch(),this);
 
         loadGame();
 
@@ -150,4 +152,7 @@ public class PlayScreen implements Screen {
         return gameMaster;
     }
 
+    public void backToMenu(){
+        manager.setCurrentScreen(ScreenSet.MENU);
+    }
 }
