@@ -9,10 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import parohyapp.mario.TowerClimber;
-import parohylib.jsonfile.input.JSONFileReader;
-import parohylib.jsonfile.input.JSONFileReaderException;
-import parohylib.jsonfile.output.JSONFileWriter;
-import parohylib.jsonfile.output.JSONFileWriterException;
+import parohyapp.mario.lib.jsonfile.input.*;
+import parohyapp.mario.lib.jsonfile.output.*;
 
 /**
  * Created by tomas on 4/11/2016.
@@ -75,7 +73,9 @@ public class GameProgress {
 
     public void saveData() throws IOException {
         if(dataFile != null){
-            /*JSONFileWriter writer = new JSONFileWriter(dataFile);
+            dataFile.delete();
+            dataFile.createNewFile();
+            JSONFileWriter writer = new JSONFileWriter(dataFile);
             for(LevelDat tmpDat : levelDataArray){
                 writer.prepareJSONObject(String.valueOf(tmpDat.getPosition()),tmpDat.getName());
             }
@@ -84,14 +84,14 @@ public class GameProgress {
                 writer.saveAllClear();
             } catch (JSONFileWriterException e) {
                 e.printStackTrace();
-            }*/
+            }
         }
     }
 
     public void loadData() {
 
         if(dataFile != null){
-           /*JSONFileReader reader = new JSONFileReader(dataFile);
+           JSONFileReader reader = new JSONFileReader(dataFile);
             try {
                 for(JSONObject tmpObj : reader.getAll()){
                     String key = tmpObj.keys().next();
@@ -99,7 +99,7 @@ public class GameProgress {
                 }
             } catch (JSONFileReaderException e) {
                 e.printStackTrace();
-            }*/
+            }
         }
 
         if(levelDataArray.size() > 0){

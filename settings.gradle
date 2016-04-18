@@ -1,1 +1,1 @@
-include 'android', 'core', ':JSONFile'
+include 'android', 'core'
