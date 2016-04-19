@@ -1,6 +1,5 @@
 package parohyapp.mario.tools.data;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import java.io.Serializable;
 

@@ -7,4 +7,7 @@ eclipse.project {
 }
 dependencies {
     compile files('lib/json-lib-2.4-jdk15.jar')
+    compile files('lib/gdx-sqlite.jar')
+    compile files('lib/gdx-sqlite-android.jar')
+    compile files('lib/sqlite-jdbc-3.7.2.jar')
 }
